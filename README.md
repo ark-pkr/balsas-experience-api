@@ -195,6 +195,8 @@ Os registros HTTP e capturas locais ficam em `docs/evidencias/`. A evidência p�
 
 ## Publicação no Render
 
+O repositório contém `render.yaml` com a configuração de um Web Service gratuito e Node.js 24.13.1. Para iniciar a configuração, use [Deploy to Render](https://render.com/deploy?repo=https://github.com/ark-pkr/balsas-experience-api). O fluxo exige uma conta Render e os valores de `DATABASE_URL` e `DIRECT_URL` no painel; o arquivo não contém credenciais reais. Esse link configura o serviço, mas não é o endereço da API publicada.
+
 1. Publique este projeto em um repositório público no GitHub, sem `.env` nem `node_modules`.
 2. Crie um Web Service no Render conectado ao repositório, usando a raiz do projeto.
 3. Build Command: `npm ci && npm run build`. Start Command: `npm start`.

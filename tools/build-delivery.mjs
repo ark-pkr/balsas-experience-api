@@ -80,7 +80,7 @@ ${code('DATABASE_URL="postgresql://USUARIO:SENHA_FICTICIA@HOST-POOLER/neondb?ssl
 <p><strong>Atenção ao seed:</strong> apaga os dados existentes antes de inserir oito atrações e três avaliações. Use apenas em banco novo ou descartável; pule essa etapa se o banco já estiver populado.</p>
 <h3>4. Iniciar e verificar</h3>${code('npm start\n# Em desenvolvimento, alternativamente: npm run dev\n# Em outro terminal:\ncurl -i http://localhost:3000/health\ncurl -i http://localhost:3000/atracoes\nnpm test')}
 <p>No PowerShell, use curl.exe. Os testes usam a porta 3108 e criam/removem uma atração temporária. Os 15 cenários passaram na verificação local.</p>
-<h3>Publicação preparada</h3><p>No Render, conectar o repositório e usar <code>npm ci &amp;&amp; npm run build</code> para build e <code>npm start</code> para iniciar. Cadastrar DATABASE_URL e DIRECT_URL como variáveis secretas. O build aplica migrações; não executa seed. A hospedagem fornece PORT.</p>`);
+<h3>Publicação preparada</h3><p>O arquivo render.yaml configura um Web Service no Render com Node.js 24.13.1. Build: <code>npm ci --include=dev &amp;&amp; npm run build</code>; início: <code>npm start</code>. Cadastrar DATABASE_URL e DIRECT_URL no painel. O build aplica migrações e não executa seed. A hospedagem fornece PORT.</p>`);
 
 for (let i = 0; i < data.records.length; i++) {
   const r = data.records[i];
@@ -100,6 +100,9 @@ ${table(['Destino', 'Endereço'], [['Repositório público no GitHub', '<a href=
 <p>Esta seção depende do relato dos integrantes. Os tópicos abaixo ajudam a registrar a experiência, mas não são apresentados como acontecimentos vividos pela equipe.</p>
 ${table(['Integrante', 'Dificuldade real', 'Como resolveu', 'O que aprendeu'], members.map(name => [name, 'A confirmar', 'A confirmar', 'A confirmar']))}
 <p>Para cada integrante: descreva um problema concreto, a tentativa que resolveu o problema e o conhecimento adquirido. Exemplos de assuntos que podem ser abordados, se realmente ocorreram: conexão com PostgreSQL, variáveis de ambiente, adaptação ao Prisma 7, relações entre tabelas, migrações, validação de JSON e publicação.</p>
+<h3>Conceitos técnicos demonstrados pelo projeto</h3>
+<p><strong>Prisma 7:</strong> o cliente usa o adaptador PrismaPg para acessar PostgreSQL. <strong>Modelagem:</strong> tags reutilizáveis são associadas às atrações em uma relação N:N. <strong>Integridade:</strong> a exclusão em cascata evita avaliações sem atração. <strong>HTTP:</strong> criação retorna 201 e Location; remoção retorna 204 sem corpo; registro ausente retorna 404.</p>
+<p>Esses conceitos são verificáveis no código; a experiência pessoal de cada integrante será inserida após a confirmação em docs/RELATOS-EQUIPE.md.</p>
 <h3>Verificação técnica realizada nesta revisão</h3>
 <p>Os 15 cenários automatizados passaram. Foram coletados registros reais de listagem 200, busca 404, criação 201 e remoção 204, usando o banco PostgreSQL 18.6 configurado. O seed não foi executado nesta revisão.</p>
 <h3>Antes de enviar pelo portal</h3>
@@ -113,6 +116,7 @@ header{font-size:8pt;letter-spacing:.8px;color:#42637f;border-bottom:1px solid #
 p{margin:7px 0}table{width:100%;border-collapse:collapse;font-size:9pt;margin:8px 0}th{background:#173c58;color:white;text-align:left;padding:7px}td{border-bottom:1px solid #d7e0e8;padding:6px 7px;vertical-align:top}tr:nth-child(even){background:#f3f6f9}
 pre{font:9pt/1.42 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f4f8;padding:12px;border-left:3px solid #537e9d;margin:7px 0}code{font-family:Consolas,monospace;font-size:9pt;overflow-wrap:anywhere}.pending{background:#fff2db;border-left:4px solid #b97a13;padding:10px 12px;font-size:9.5pt;margin:10px 0}.evidence{display:block;width:100%;max-height:222mm;object-fit:contain;border:1px solid #d7e0e8;margin-top:10px}.caption{font-size:9pt;color:#4a6072}footer{position:absolute;bottom:9mm;left:16mm;right:16mm;border-top:1px solid #ccd7e0;padding-top:6px;font-size:8pt;color:#60758a}footer span{float:right}li{margin-bottom:8px}
 .page:first-child{font-size:9.5pt;line-height:1.35}.page:first-child table{font-size:8.2pt}.page:first-child th{padding:4px 7px}.page:first-child td{padding:3px 7px}.page:first-child h2{margin-top:11px;font-size:14pt}.page:first-child h1{font-size:25pt;margin-bottom:10px}.page:first-child p{margin:6px 0}
+.page:last-child{font-size:9.5pt;line-height:1.35}.page:last-child h2{margin-top:12px}.page:last-child h3{margin-top:10px}.page:last-child table{font-size:8.5pt}.page:last-child td{padding:5px 7px}.page:last-child li{margin-bottom:5px}
 @media screen{.page{margin:12px auto;box-shadow:0 2px 10px #aab7c7}}@media print{body{background:white}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style>${pages.join('')}</html>`;
 const htmlPath = resolve(out, 'relatorio-entrega.html');
