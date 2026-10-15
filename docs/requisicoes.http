@@ -1,0 +1,64 @@
+# Exemplos para VS Code REST Client ou outro cliente compatível com .http.
+# Depois da publicação, substitua baseUrl pela URL pública.
+@baseUrl = http://localhost:3000
+# Copie o id retornado na criação para esta variável.
+@atracaoId = 123
+
+### Identificação
+GET {{baseUrl}}/
+
+### Saúde do processo HTTP
+GET {{baseUrl}}/health
+
+### Listagem (200)
+GET {{baseUrl}}/atracoes
+
+### Filtros combinados
+GET {{baseUrl}}/atracoes?categoria=Lazer&tag=lazer&q=rio
+
+### Busca inexistente (404)
+GET {{baseUrl}}/atracoes/2147483647
+
+### Categorias
+GET {{baseUrl}}/categorias
+
+### Criação (201)
+POST {{baseUrl}}/atracoes
+Content-Type: application/json
+
+{
+  "nome": "Atração de exemplo",
+  "descricao": "Registro temporário para testar a API.",
+  "categoria": "Lazer",
+  "cidade": "Balsas",
+  "estado": "MA",
+  "distanciaCentroKm": 2,
+  "tags": ["lazer"]
+}
+
+### Detalhes
+GET {{baseUrl}}/atracoes/{{atracaoId}}
+
+### Atualização (200)
+PUT {{baseUrl}}/atracoes/{{atracaoId}}
+Content-Type: application/json
+
+{
+  "nome": "Atração atualizada",
+  "descricao": "Descrição atualizada de exemplo.",
+  "categoria": "Lazer",
+  "tags": ["lazer"]
+}
+
+### Avaliação (201)
+POST {{baseUrl}}/atracoes/{{atracaoId}}/avaliacoes
+Content-Type: application/json
+
+{
+  "visitante": "Visitante de exemplo",
+  "nota": 5,
+  "comentario": "Gostei do passeio."
+}
+
+### Remoção (204, sem corpo)
+DELETE {{baseUrl}}/atracoes/{{atracaoId}}

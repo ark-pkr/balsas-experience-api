@@ -1,0 +1,48 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><style>
+      *{box-sizing:border-box}body{margin:0;padding:32px;background:#eef2f6;color:#17243a;font:18px Arial}
+      main{background:white;border:1px solid #d3dbe5;border-radius:12px;padding:28px;max-width:1130px}
+      h1{font-size:27px;margin:10px 0 22px}.eyebrow{color:#46607d;font-size:15px;letter-spacing:1px}
+      .request{background:#162a42;color:white;padding:17px;border-radius:7px;font:18px monospace;overflow-wrap:anywhere}
+      .status{margin:20px 0;font-weight:bold;color:#116044}
+      h2{font-size:18px;margin:20px 0 8px}pre{font:16px/1.35 Consolas,monospace;white-space:pre-wrap;background:#f4f7fa;padding:15px;margin:0;border-radius:6px}
+      .meta{font-size:14px;color:#526379;margin-top:14px}p{font-size:15px}</style>
+      <main><div class="eyebrow">BALSAS EXPERIENCE API · CLIENTE HTTP NODE.JS / FETCH</div>
+      <h1>Listagem de atrações</h1><div class="request">GET http://127.0.0.1:3110/atracoes</div>
+      <div class="status">HTTP 200 OK · 694 ms</div>
+      
+      <h2>Resposta recebida · application/json</h2>
+      <pre>[
+  {
+    "id": 6,
+    "nome": "Cachoeira das Três Marias",
+    "descricao": "Formada por três quedas d'água, é uma das atrações naturais mais conhecidas da região.",
+    "cidade": "Balsas",
+    "estado": "MA",
+    "distanciaCentroKm": 50,
+    "criadaEm": "2026-10-06T00:39:17.272Z",
+    "categoriaId": 3,
+    "categoria": {
+      "id": 3,
+      "nome": "Natureza e Aventura"
+    },
+    "tags": [
+      {
+        "id": 12,
+        "nome": "aventura"
+      },
+      {
+        "id": 13,
+        "nome": "cachoeira"
+      },
+      {
+        "id": 11,
+        "nome": "natureza"
+      },
+      {
+        "id": 14,
+        "nome": "trilha"
+      }
+    ]
+  }
+]</pre>
+      <p>Exibindo o primeiro de 8 registros. Resposta integral em registros-http.json.</p><div class="meta">Capturado em 2026-10-15T16:25:49.901Z · Ambiente local · Registro real de requisição e resposta.</div></main></html>

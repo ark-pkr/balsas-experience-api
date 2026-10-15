@@ -1,0 +1,20 @@
+{
+  "type": "module",
+  "scripts": {
+    "start": "node balsas-experience-api/src/app.js",
+    "dev": "node --watch balsas-experience-api/src/app.js",
+    "test": "node tests/api.test.mjs",
+    "build": "prisma generate --config prisma7.config.ts && prisma migrate deploy --config prisma7.config.ts",
+    "seed": "node prisma/seed.js"
+  },
+  "devDependencies": {
+    "prisma": "^7.10.0"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "dotenv": "^18.0.5",
+    "pg": "^8.23.1"
+  }
+}

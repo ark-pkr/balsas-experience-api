@@ -1,0 +1,366 @@
+{
+  "client": "Node.js fetch (cliente HTTP)",
+  "environment": "local",
+  "databaseVersion": "PostgreSQL 18.6 (653b019) on aarch64-unknown-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, 64-bit",
+  "records": [
+    {
+      "title": "Listagem de atrações",
+      "timestamp": "2026-10-15T16:25:49.901Z",
+      "method": "GET",
+      "url": "http://127.0.0.1:3110/atracoes",
+      "requestBody": null,
+      "status": 200,
+      "statusText": "OK",
+      "durationMs": 694,
+      "responseHeaders": {
+        "connection": "keep-alive",
+        "content-length": "3388",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Thu, 15 Oct 2026 16:25:49 GMT",
+        "etag": "W/\"d3c-Mr5RQqa+EnqsGVEu4GK1bUCB2Wc\"",
+        "keep-alive": "timeout=5",
+        "x-powered-by": "Express"
+      },
+      "responseBody": [
+        {
+          "id": 6,
+          "nome": "Cachoeira das Três Marias",
+          "descricao": "Formada por três quedas d'água, é uma das atrações naturais mais conhecidas da região.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": 50,
+          "criadaEm": "2026-10-06T00:39:17.272Z",
+          "categoriaId": 3,
+          "categoria": {
+            "id": 3,
+            "nome": "Natureza e Aventura"
+          },
+          "tags": [
+            {
+              "id": 12,
+              "nome": "aventura"
+            },
+            {
+              "id": 13,
+              "nome": "cachoeira"
+            },
+            {
+              "id": 11,
+              "nome": "natureza"
+            },
+            {
+              "id": 14,
+              "nome": "trilha"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "nome": "Cachoeira do Macapá",
+          "descricao": "Considerada a maior queda da região, com aproximadamente 65 metros de altura.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": 85,
+          "criadaEm": "2026-10-06T00:39:17.967Z",
+          "categoriaId": 3,
+          "categoria": {
+            "id": 3,
+            "nome": "Natureza e Aventura"
+          },
+          "tags": [
+            {
+              "id": 12,
+              "nome": "aventura"
+            },
+            {
+              "id": 13,
+              "nome": "cachoeira"
+            },
+            {
+              "id": 15,
+              "nome": "ecoturismo"
+            },
+            {
+              "id": 11,
+              "nome": "natureza"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "nome": "Descida de boia no Rio Balsas",
+          "descricao": "Passeio tradicional em que moradores e turistas descem o Rio Balsas em câmaras de pneu.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": null,
+          "criadaEm": "2026-10-06T00:39:18.580Z",
+          "categoriaId": 3,
+          "categoria": {
+            "id": 3,
+            "nome": "Natureza e Aventura"
+          },
+          "tags": [
+            {
+              "id": 12,
+              "nome": "aventura"
+            },
+            {
+              "id": 15,
+              "nome": "ecoturismo"
+            },
+            {
+              "id": 8,
+              "nome": "lazer"
+            },
+            {
+              "id": 11,
+              "nome": "natureza"
+            },
+            {
+              "id": 10,
+              "nome": "rio"
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "nome": "Igreja Matriz de Santo Antônio e Praça da Matriz",
+          "descricao": "Considerado o marco zero da cidade, o local carrega a história do início do município.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": 0,
+          "criadaEm": "2026-10-06T00:39:13.681Z",
+          "categoriaId": 1,
+          "categoria": {
+            "id": 1,
+            "nome": "Histórico e Urbano"
+          },
+          "tags": [
+            {
+              "id": 3,
+              "nome": "arquitetura"
+            },
+            {
+              "id": 2,
+              "nome": "cultura"
+            },
+            {
+              "id": 1,
+              "nome": "história"
+            },
+            {
+              "id": 4,
+              "nome": "urbano"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "nome": "Museu Municipal Gilza Magalhães Ribeiro",
+          "descricao": "Espaço importante para preservar e contar a história local e cultural da região.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": null,
+          "criadaEm": "2026-10-06T00:39:15.841Z",
+          "categoriaId": 1,
+          "categoria": {
+            "id": 1,
+            "nome": "Histórico e Urbano"
+          },
+          "tags": [
+            {
+              "id": 2,
+              "nome": "cultura"
+            },
+            {
+              "id": 1,
+              "nome": "história"
+            },
+            {
+              "id": 7,
+              "nome": "museu"
+            },
+            {
+              "id": 5,
+              "nome": "patrimônio"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "nome": "Ponte de Madeira",
+          "descricao": "Construída há mais de 40 anos, é um patrimônio cultural e cartão-postal que liga pontos da cidade.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": null,
+          "criadaEm": "2026-10-06T00:39:14.438Z",
+          "categoriaId": 1,
+          "categoria": {
+            "id": 1,
+            "nome": "Histórico e Urbano"
+          },
+          "tags": [
+            {
+              "id": 2,
+              "nome": "cultura"
+            },
+            {
+              "id": 6,
+              "nome": "fotografia"
+            },
+            {
+              "id": 1,
+              "nome": "história"
+            },
+            {
+              "id": 5,
+              "nome": "patrimônio"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "nome": "Porto dos Caraíbas",
+          "descricao": "Conhecido como o verdadeiro berço histórico do surgimento do município.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": null,
+          "criadaEm": "2026-10-06T00:39:15.362Z",
+          "categoriaId": 1,
+          "categoria": {
+            "id": 1,
+            "nome": "Histórico e Urbano"
+          },
+          "tags": [
+            {
+              "id": 2,
+              "nome": "cultura"
+            },
+            {
+              "id": 1,
+              "nome": "história"
+            },
+            {
+              "id": 5,
+              "nome": "patrimônio"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "nome": "Prainha",
+          "descricao": "Ponto de encontro à beira do rio, para lazer, descanso e dias de calor com a família.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": null,
+          "criadaEm": "2026-10-06T00:39:16.493Z",
+          "categoriaId": 2,
+          "categoria": {
+            "id": 2,
+            "nome": "Lazer"
+          },
+          "tags": [
+            {
+              "id": 9,
+              "nome": "família"
+            },
+            {
+              "id": 8,
+              "nome": "lazer"
+            },
+            {
+              "id": 11,
+              "nome": "natureza"
+            },
+            {
+              "id": 10,
+              "nome": "rio"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Busca por ID inexistente",
+      "timestamp": "2026-10-15T16:25:49.947Z",
+      "method": "GET",
+      "url": "http://127.0.0.1:3110/atracoes/2147483647",
+      "requestBody": null,
+      "status": 404,
+      "statusText": "Not Found",
+      "durationMs": 45,
+      "responseHeaders": {
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Thu, 15 Oct 2026 16:25:49 GMT",
+        "etag": "W/\"24-nYlfGEuTSNGi8Xe8qdFCh4yYRaY\"",
+        "keep-alive": "timeout=5",
+        "x-powered-by": "Express"
+      },
+      "responseBody": {
+        "erro": "Atração não encontrada"
+      }
+    },
+    {
+      "title": "Criação de atração temporária",
+      "timestamp": "2026-10-15T16:25:50.249Z",
+      "method": "POST",
+      "url": "http://127.0.0.1:3110/atracoes",
+      "requestBody": {
+        "nome": "Evidência de entrega 1792081549947",
+        "descricao": "Registro temporário para verificar a entrega acadêmica.",
+        "categoria": "Histórico e Urbano",
+        "cidade": "Balsas",
+        "estado": "MA",
+        "distanciaCentroKm": 0,
+        "tags": []
+      },
+      "status": 201,
+      "statusText": "Created",
+      "durationMs": 302,
+      "responseHeaders": {
+        "connection": "keep-alive",
+        "content-length": "294",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Thu, 15 Oct 2026 16:25:50 GMT",
+        "etag": "W/\"126-n0TD9w8CBm9ocbLeAj8J2Jj6FFU\"",
+        "keep-alive": "timeout=5",
+        "location": "/atracoes/11",
+        "x-powered-by": "Express"
+      },
+      "responseBody": {
+        "id": 11,
+        "nome": "Evidência de entrega 1792081549947",
+        "descricao": "Registro temporário para verificar a entrega acadêmica.",
+        "cidade": "Balsas",
+        "estado": "MA",
+        "distanciaCentroKm": 0,
+        "criadaEm": "2026-10-15T16:25:50.047Z",
+        "categoriaId": 1,
+        "categoria": {
+          "id": 1,
+          "nome": "Histórico e Urbano"
+        },
+        "tags": []
+      }
+    },
+    {
+      "title": "Remoção da atração temporária",
+      "timestamp": "2026-10-15T16:25:50.296Z",
+      "method": "DELETE",
+      "url": "http://127.0.0.1:3110/atracoes/11",
+      "requestBody": null,
+      "status": 204,
+      "statusText": "No Content",
+      "durationMs": 47,
+      "responseHeaders": {
+        "connection": "keep-alive",
+        "date": "Thu, 15 Oct 2026 16:25:50 GMT",
+        "keep-alive": "timeout=5",
+        "x-powered-by": "Express"
+      },
+      "responseBody": null
+    }
+  ]
+}
