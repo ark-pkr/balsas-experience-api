@@ -15,16 +15,16 @@ Em 17/10/2026, as rotas /health, /categorias e /atracoes responderam 200; /atrac
 
 ## Identificação e equipe
 
-Instituição: UNIBALSAS - Centro Universitário de Balsas. Curso: Análise e Desenvolvimento de Sistemas (conforme documento existente). Disciplina: Programação para Web. Professor: Marcos Deivd de Spusa Ramos (grafia informada). Data: 17/10/2026.
+Instituição: UNIBALSAS - Centro Universitário de Balsas. Curso: Análise e Desenvolvimento de Sistemas. Disciplina: Programação para Web. Professor: Marcos David de Souza Ramos. Data: 17/10/2026.
 
-Nome da equipe e matrículas: não informados. Contribuições abaixo são propostas existentes, sujeitas à confirmação dos integrantes.
+Equipe: **Carinne, Júlio César, João Pedro e Rogério**. Contribuições e relatos individuais confirmados pela equipe.
 
-| Nome completo | Matrícula | Contribuição proposta |
+| Nome completo | Matrícula | Contribuição |
 | --- | --- | --- |
-| Carinne Borges da Silva | A informar | Organização da documentação e descrição dos endpoints. |
-| Júlio César Lima dos Reis | A informar | Desenvolvimento das rotas e validação dos dados recebidos. |
-| João Pedro Strasser Santos | A informar | Modelagem do banco e integração com Prisma. |
-| Rogério Mota de Melo | A informar | Configuração do ambiente, testes e publicação no Render. |
+| Carinne da Silva Borges | 11.1.01227 | Organização do README, descrição dos endpoints e seleção das evidências de funcionamento. |
+| Júlio César Lima dos Reis | 25.1.07087 | Desenvolvimento das rotas de atrações e avaliações, com validação dos dados recebidos. |
+| João Pedro Strasser Santos | 25.1.04381 | Modelagem das entidades, migrações e integração das consultas com Prisma e PostgreSQL. |
+| Rogério Mota de Melo | 25.1.04936 | Configuração do ambiente, testes de integração e publicação da API no Render. |
 
 ## Tecnologias
 
@@ -169,8 +169,18 @@ Render: configuração em render.yaml, build npm ci --include=dev && npm run bui
 
 ## Dificuldades e aprendizados
 
-Os relatos individuais propostos estão em [RELATOS-EQUIPE.md](docs/RELATOS-EQUIPE.md) e precisam ser confirmados pelos integrantes. O código demonstra integração do Prisma 7 com PrismaPg, relações 1:N e N:N, migrações, exclusão em cascata e respostas HTTP 201/204/404. Esses resultados técnicos não substituem os relatos pessoais exigidos na atividade.
+Relatos individuais e contribuições revisados e confirmados pela equipe.
+
+**Carinne da Silva Borges:** Dificuldade: Distinguir os códigos 200, 201, 204 e 404 na documentação. Solução: Comparação das requisições e respostas para registrar método, caminho, corpo e status de cada operação. Aprendizado: Documentar uma API de forma reproduzível, incluindo exemplos e instruções de execução.
+
+**Júlio César Lima dos Reis:** Dificuldade: Tratar campos obrigatórios, notas inválidas e registros inexistentes. Solução: Organização dos controladores e verificação dos retornos HTTP em entradas válidas e inválidas. Aprendizado: Implementar operações CRUD no Express, validar JSON e utilizar códigos de status adequados.
+
+**João Pedro Strasser Santos:** Dificuldade: Representar categorias, tags reutilizáveis e avaliações sem duplicar informações. Solução: Definição de relações 1:N e N:N no schema, com chaves estrangeiras e exclusão em cascata das avaliações. Aprendizado: Usar migrações, consultar relações com Prisma e preservar a integridade dos dados.
+
+**Rogério Mota de Melo:** Dificuldade: Conectar a aplicação ao banco hospedado e configurar as variáveis de ambiente. Solução: Configuração de DATABASE_URL, DIRECT_URL e comandos de build, seguida de testes das rotas publicadas. Aprendizado: Publicar uma API, proteger credenciais e verificar o funcionamento do servidor e do banco.
+
+Versão por integrante: [RELATOS-EQUIPE.md](docs/RELATOS-EQUIPE.md).
 
 ## Relatório e entrega
 
-PDF atualizado: [relatório](output/pdf/balsas-experience-api-equipe-a-definir.pdf). Antes da submissão, preencher as matrículas, confirmar o nome da equipe e os relatos individuais, conferir a grafia do professor e renomear para balsas-experience-api-equipe-NOME-DA-EQUIPE.pdf. Apenas um integrante envia somente o PDF pelo portal, até 17/10/2026 às 23h30.
+PDF atualizado: [relatório](output/pdf/balsas-experience-api-equipe-carinne-julio-joao-pedro-rogerio.pdf). Apenas um integrante envia somente o PDF pelo portal, até 17/10/2026 às 23h30.

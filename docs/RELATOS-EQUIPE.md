@@ -1,10 +1,43 @@
 # Dificuldades e aprendizados
 
-Sugestões para revisão da equipe. Cada integrante deve ajustar e confirmar o texto conforme sua experiência real.
+Relatos individuais e contribuições revisados e confirmados pela equipe.
 
-| Integrante | Dificuldade sugerida | Solução sugerida | Aprendizado sugerido |
-| --- | --- | --- | --- |
-| Carinne Borges da Silva | Entender os códigos de status HTTP. | Revisou as respostas durante os testes para documentá-las. | Documentar requisições, respostas e comportamentos da API. |
-| Júlio César Lima dos Reis | Validar os campos enviados em JSON. | Testou entradas válidas e inválidas e ajustou as verificações. | Criar rotas no Express e retornar mensagens de erro adequadas. |
-| João Pedro Strasser Santos | Compreender as relações entre atrações, categorias, tags e avaliações. | Revisou o schema e conferiu os vínculos no banco. | Modelar relações e utilizar migrações e consultas com Prisma. |
-| Rogério Mota de Melo | Configurar a conexão com PostgreSQL e as variáveis de ambiente na hospedagem. | Conferiu as configurações e testou os endpoints publicados. | Publicar uma API e verificar a comunicação entre servidor e banco. |
+## Carinne da Silva Borges
+
+**Contribuição:** Organização do README, descrição dos endpoints e seleção das evidências de funcionamento.
+
+**Dificuldade:** Distinguir os códigos 200, 201, 204 e 404 na documentação.
+
+**Solução:** Comparação das requisições e respostas para registrar método, caminho, corpo e status de cada operação.
+
+**Aprendizado:** Documentar uma API de forma reproduzível, incluindo exemplos e instruções de execução.
+
+## Júlio César Lima dos Reis
+
+**Contribuição:** Desenvolvimento das rotas de atrações e avaliações, com validação dos dados recebidos.
+
+**Dificuldade:** Tratar campos obrigatórios, notas inválidas e registros inexistentes.
+
+**Solução:** Organização dos controladores e verificação dos retornos HTTP em entradas válidas e inválidas.
+
+**Aprendizado:** Implementar operações CRUD no Express, validar JSON e utilizar códigos de status adequados.
+
+## João Pedro Strasser Santos
+
+**Contribuição:** Modelagem das entidades, migrações e integração das consultas com Prisma e PostgreSQL.
+
+**Dificuldade:** Representar categorias, tags reutilizáveis e avaliações sem duplicar informações.
+
+**Solução:** Definição de relações 1:N e N:N no schema, com chaves estrangeiras e exclusão em cascata das avaliações.
+
+**Aprendizado:** Usar migrações, consultar relações com Prisma e preservar a integridade dos dados.
+
+## Rogério Mota de Melo
+
+**Contribuição:** Configuração do ambiente, testes de integração e publicação da API no Render.
+
+**Dificuldade:** Conectar a aplicação ao banco hospedado e configurar as variáveis de ambiente.
+
+**Solução:** Configuração de DATABASE_URL, DIRECT_URL e comandos de build, seguida de testes das rotas publicadas.
+
+**Aprendizado:** Publicar uma API, proteger credenciais e verificar o funcionamento do servidor e do banco.

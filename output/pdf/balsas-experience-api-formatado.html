@@ -1,0 +1,97 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Balsas Experience API</title><style>
+@page{size:A4;margin:43mm 20mm 20mm 30mm}*{box-sizing:border-box}body{font:12pt/1.5 Arial,sans-serif;color:#000;margin:0} .banner{position:fixed;top:-38mm;left:-24mm;width:198mm;height:29mm;object-fit:contain}p{text-align:justify;text-indent:12mm;margin:0 0 9pt}h2{font-size:12pt;text-transform:uppercase;margin:18pt 0 10pt;break-after:avoid}h3{font-size:12pt;margin:12pt 0 6pt;break-after:avoid}h2 small{text-transform:none;font-weight:normal}table{border-collapse:collapse;width:100%;font-size:10pt;line-height:1.2;margin:10pt 0 16pt;table-layout:fixed}th{background:#b90000;color:white;font-weight:bold;text-align:center}th,td{border:1px solid black;padding:5pt;overflow-wrap:anywhere;vertical-align:top}thead{display:table-header-group}tr{break-inside:avoid}a{color:black;overflow-wrap:anywhere}pre{font:9pt/1.35 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #888;padding:9pt;break-inside:avoid}code{font:10pt Consolas,monospace}.pending{border:1px solid #888;padding:9pt;font-size:10pt}.evidence{display:block;width:100%;height:150mm;max-height:150mm;object-fit:contain;break-inside:avoid}.caption{font-size:10pt;text-indent:0}.cover,.titlepage{height:228mm;position:relative;break-after:page;text-align:center}.institution{font-weight:bold;margin:0 0 20pt;text-indent:0;text-align:center}.names{line-height:1.7;text-align:center;text-indent:0}.project{font-size:12pt;line-height:1.7;position:absolute;top:86mm;width:100%;font-weight:bold}.place{position:absolute;bottom:0;width:100%;text-align:center;text-indent:0}.note{position:absolute;top:133mm;right:0;width:85mm;font-size:11pt;line-height:1.3;text-indent:0;text-align:justify}li{margin:5pt 0}.kicker{display:none}.evidence-heading,.new-section{break-before:page}.evidence-heading{margin-top:0}p{orphans:3;widows:3}.caption{break-before:avoid}
+</style><section class="cover"><p class="institution">UNIBALSAS – CENTRO UNIVERSITÁRIO DE BALSAS</p><p class="names">CARINNE DA SILVA BORGES<br>JOÃO PEDRO STRASSER SANTOS<br>JÚLIO CÉSAR LIMA DOS REIS<br>ROGÉRIO MOTA DE MELO</p><div class="project">BALSAS EXPERIENCE API:<br>API REST PARA ATRAÇÕES TURÍSTICAS DE BALSAS-MA<br>RELATÓRIO DE ENTREGA DO PROJETO</div><p class="place">Balsas – MA<br>2026</p></section><section class="titlepage"><p class="names">CARINNE DA SILVA BORGES<br>JOÃO PEDRO STRASSER SANTOS<br>JÚLIO CÉSAR LIMA DOS REIS<br>ROGÉRIO MOTA DE MELO</p><div class="project">BALSAS EXPERIENCE API:<br>API REST PARA ATRAÇÕES TURÍSTICAS DE BALSAS-MA<br>RELATÓRIO DE ENTREGA DO PROJETO</div><p class="note">Trabalho de laboratório do curso de Análise e Desenvolvimento de Sistemas do Centro Universitário de Balsas – UNIBALSAS. Apresenta a construção de uma API REST em Node.js e Express, integrada ao PostgreSQL com Prisma ORM.<br><br>Disciplina: Programação para Web.<br>Professor: Marcos David de Souza Ramos.</p><p class="place">Balsas – MA<br>2026</p></section><h2>1 IDENTIFICAÇÃO</h2><table><thead><tr><th>Campo</th><th>Informação</th></tr></thead><tbody><tr><td>Instituição</td><td>UNIBALSAS - Centro Universitário de Balsas</td></tr><tr><td>Curso</td><td>Análise e Desenvolvimento de Sistemas</td></tr><tr><td>Disciplina</td><td>Programação para Web</td></tr><tr><td>Professor</td><td>Marcos David de Souza Ramos</td></tr><tr><td>Projeto</td><td>Balsas Experience API</td></tr><tr><td>Data do documento</td><td>17/10/2026</td></tr></tbody></table>
+<h2>2 A EQUIPE</h2><p>Equipe: <strong>Carinne, Júlio César, João Pedro e Rogério</strong>.</p>
+<p>Distribuição de atividades confirmada pela equipe.</p>
+<table><thead><tr><th>Nome completo</th><th>Matrícula</th><th>Contribuição</th></tr></thead><tbody><tr><td>Carinne da Silva Borges</td><td>11.1.01227</td><td>Organização do README, descrição dos endpoints e seleção das evidências de funcionamento.</td></tr><tr><td>Júlio César Lima dos Reis</td><td>25.1.07087</td><td>Desenvolvimento das rotas de atrações e avaliações, com validação dos dados recebidos.</td></tr><tr><td>João Pedro Strasser Santos</td><td>25.1.04381</td><td>Modelagem das entidades, migrações e integração das consultas com Prisma e PostgreSQL.</td></tr><tr><td>Rogério Mota de Melo</td><td>25.1.04936</td><td>Configuração do ambiente, testes de integração e publicação da API no Render.</td></tr></tbody></table>
+<h2>3 DESCRIÇÃO DO PROJETO</h2>
+<p>A Balsas Experience API disponibiliza um catálogo de atrações turísticas de Balsas-MA. Permite consultar atrações, filtrar por categoria, tag e texto, acessar detalhes e registrar avaliações de visitantes. Também oferece operações para criar, atualizar e remover atrações.</p>
+<p>Serve como fonte de dados para sites e aplicativos voltados a moradores e turistas. O projeto reúne informações dispersas em uma estrutura consultável e persistente: categorias organizam o catálogo, tags permitem cruzar interesses e avaliações registram a experiência dos visitantes.</p>
+<h2>4 TECNOLOGIAS UTILIZADAS</h2><p>Versões de referência do ambiente local e dependências. A versão do banco publicada não foi consultada.</p>
+<table><thead><tr><th>Tecnologia</th><th>Versão verificada</th><th>Finalidade</th></tr></thead><tbody><tr><td>Node.js</td><td>24.13.1</td><td>Ambiente de execução JavaScript</td></tr><tr><td>Express</td><td>5.2.1</td><td>Rotas e respostas HTTP</td></tr><tr><td>Prisma CLI / Client</td><td>7.10.0</td><td>Modelagem, migrações e consultas</td></tr><tr><td>PostgreSQL</td><td>18.6</td><td>Banco de dados relacional</td></tr><tr><td>@prisma/adapter-pg</td><td>7.10.0</td><td>Adaptador Prisma para PostgreSQL</td></tr><tr><td>pg</td><td>8.23.1</td><td>Driver PostgreSQL</td></tr><tr><td>dotenv</td><td>18.0.5</td><td>Carregamento das variáveis de ambiente</td></tr><tr><td>npm</td><td>11.17.0</td><td>Dependências e scripts</td></tr></tbody></table><h2>5 MODELO DE DADOS</h2><p>PK = chave primária; FK = chave estrangeira. IDs inteiros são gerados automaticamente; campos sem indicação de opcional são obrigatórios.</p>
+<table><thead><tr><th>Tabela</th><th>Campos e restrições</th></tr></thead><tbody><tr><td>Categoria</td><td>id: Int, PK; nome: String, único</td></tr><tr><td>Tag</td><td>id: Int, PK; nome: String, único</td></tr><tr><td>Atracao</td><td>id: Int, PK; nome: String; descricao: String; cidade: String (padrão Balsas); estado: String (padrão MA); distanciaCentroKm: Int opcional; criadaEm: DateTime (agora); categoriaId: Int, FK → Categoria.id</td></tr><tr><td>Avaliacao</td><td>id: Int, PK; visitante: String; nota: Int; comentario: String opcional; criadaEm: DateTime (agora); atracaoId: Int, FK → Atracao.id</td></tr><tr><td>_AtracaoToTag</td><td>A: Int, FK → Atracao.id; B: Int, FK → Tag.id. PK composta (A, B). Tabela de associação gerenciada pelo Prisma.</td></tr></tbody></table>
+<p><strong>Relações:</strong> Categoria 1:N Atracao; Atracao 1:N Avaliacao; Atracao N:N Tag. Excluir uma atração remove suas avaliações e associações com tags em cascata; categorias e tags são preservadas. A API valida notas inteiras entre 1 e 5.</p>
+<p><strong>Por que separar tags?</strong> Uma tabela própria permite reutilizar a mesma tag em várias atrações, evitar duplicação de nomes e aplicar filtros por relacionamento.</p>
+<h2>6 ENDPOINTS DA API</h2>
+<table><thead><tr><th>Método</th><th>Caminho</th><th>O que faz</th><th>Status</th></tr></thead><tbody><tr><td>GET</td><td>/</td><td>Identificação do serviço</td><td>200</td></tr><tr><td>GET</td><td>/health</td><td>Estado do processo HTTP</td><td>200</td></tr><tr><td>GET</td><td>/atracoes</td><td>Listagem por nome; categoria e tags incluídas</td><td>200</td></tr><tr><td>GET</td><td>/atracoes?categoria=Lazer<br>&amp;tag=lazer&amp;q=rio</td><td>Filtros combinados, sem diferenciar maiúsculas</td><td>200</td></tr><tr><td>GET</td><td>/atracoes/:id</td><td>Detalhes, avaliações, média e total</td><td>200 / 404</td></tr><tr><td>GET</td><td>/categorias</td><td>Categorias e contagem de atrações</td><td>200</td></tr><tr><td>POST</td><td>/atracoes</td><td>Criar atração</td><td>201 / 400 / 409</td></tr><tr><td>PUT</td><td>/atracoes/:id</td><td>Substituir dados e tags</td><td>200 / 400 / 404 / 409</td></tr><tr><td>DELETE</td><td>/atracoes/:id</td><td>Excluir atração e avaliações</td><td>204 / 404</td></tr><tr><td>POST</td><td>/atracoes/:id/avaliacoes</td><td>Criar avaliação de visitante</td><td>201 / 400 / 404</td></tr></tbody></table>
+<p>Falhas inesperadas podem retornar 500. /health não verifica o banco. POST e PUT exigem nome, descricao e categoria. Cidade, estado, distância e tags são opcionais. PUT substitui tags e restaura os padrões dos campos opcionais omitidos.</p><h2>6 ENDPOINTS DA API <SMALL>· EXEMPLO COMPLETO</SMALL></h2>
+<p>Requisição e resposta reais do cliente HTTP Node.js/fetch, capturadas em ambiente local em 15/10/2026. O registro temporário foi removido após a coleta.</p>
+<h3>Requisição</h3><pre>POST /atracoes HTTP/1.1
+Host: 127.0.0.1:3110
+Content-Type: application/json
+
+{
+  "nome": "Evidência de entrega 1792081549947",
+  "descricao": "Registro temporário para verificar a entrega acadêmica.",
+  "categoria": "Histórico e Urbano",
+  "cidade": "Balsas",
+  "estado": "MA",
+  "distanciaCentroKm": 0,
+  "tags": []
+}</pre>
+<h3>Resposta</h3><pre>HTTP/1.1 201 Created
+Location: /atracoes/11
+Content-Type: application/json; charset=utf-8
+
+{
+  "id": 11,
+  "nome": "Evidência de entrega 1792081549947",
+  "descricao": "Registro temporário para verificar a entrega acadêmica.",
+  "cidade": "Balsas",
+  "estado": "MA",
+  "distanciaCentroKm": 0,
+  "criadaEm": "2026-10-15T16:25:50.047Z",
+  "categoriaId": 1,
+  "categoria": {
+    "id": 1,
+    "nome": "Histórico e Urbano"
+  },
+  "tags": []
+}</pre>
+<p>Busca inexistente: <code>GET /atracoes/2147483647</code> retorna 404 com <code>{"erro":"Atração não encontrada"}</code>. Remoção bem-sucedida retorna 204 sem corpo.</p><h2>7 COMO EXECUTAR O PROJETO</h2>
+<p><strong>Pré-requisitos:</strong> Node.js 24 LTS, npm, Git e acesso a um PostgreSQL local ou hospedado. Execute os comandos na raiz do repositório.</p>
+<h3>1. Clonar e instalar</h3><pre>git clone https://github.com/ark-pkr/balsas-experience-api.git
+cd balsas-experience-api
+npm ci</pre>
+<p>O repositório público está indicado na seção 9.</p>
+<h3>2. Configurar o ambiente</h3><p>Copie .env.example para .env e substitua os exemplos pelas credenciais do seu banco. Não publique o .env.</p>
+<pre>DATABASE_URL="postgresql://USUARIO:SENHA_FICTICIA@HOST-POOLER/neondb?sslmode=require"
+DIRECT_URL="postgresql://USUARIO:SENHA_FICTICIA@HOST-DIRETO/neondb?sslmode=require&amp;connect_timeout=30"
+PORT=3000</pre>
+<p>A aplicação usa DATABASE_URL. O Prisma CLI usa DIRECT_URL ou, se ausente, DATABASE_URL. As senhas acima são fictícias.</p>
+<h3>3. Gerar cliente, migrar e popular</h3><pre>npx prisma generate --config prisma7.config.ts
+npx prisma migrate deploy --config prisma7.config.ts
+npm run seed</pre>
+<p><strong>Atenção ao seed:</strong> apaga os dados existentes antes de inserir oito atrações e três avaliações. Use apenas em banco novo ou descartável; pule essa etapa se o banco já estiver populado.</p>
+<h3>4. Iniciar e verificar</h3><pre>npm start
+# Em desenvolvimento, alternativamente: npm run dev
+# Em outro terminal:
+curl -i http://localhost:3000/health
+curl -i http://localhost:3000/atracoes
+npm test</pre>
+<p>No PowerShell, use curl.exe. Os testes usam a porta 3108 e criam/removem uma atração temporária. Os 15 cenários passaram na verificação local.</p>
+<h3>Publicação preparada</h3><p>O arquivo render.yaml configura um Web Service no Render com Node.js 24.13.1. Build: <code>npm ci --include=dev &amp;&amp; npm run build</code>; início: <code>npm start</code>. Cadastrar DATABASE_URL e DIRECT_URL no painel. O build aplica migrações e não executa seed. A hospedagem fornece PORT.</p><h2 class="evidence-heading">8. Evidências de funcionamento</h2>
+  <h3>Listagem de atrações · HTTP 200</h3>
+  <p>Captura da visualização do registro real do cliente HTTP Node.js/fetch. Ambiente local, em 15/10/2026. A resposta completa e os cabeçalhos estão em docs/evidencias/registros-http.json.</p>
+  <img class="evidence" src="file:///C:/Users/rogerio/OneDrive/Desktop/TESTE002/docs/evidencias/1-200.png">
+  <p class="caption">GET http://127.0.0.1:3110/atracoes · Status recebido: 200. A captura mostra o primeiro item da listagem; o JSON integral foi preservado.</p><h2 class="evidence-heading">8. Evidências de funcionamento <small>· continuação</small></h2>
+  <h3>Busca por ID inexistente · HTTP 404</h3>
+  <p>Captura da visualização do registro real do cliente HTTP Node.js/fetch. Ambiente local, em 15/10/2026. A resposta completa e os cabeçalhos estão em docs/evidencias/registros-http.json.</p>
+  <img class="evidence" src="file:///C:/Users/rogerio/OneDrive/Desktop/TESTE002/docs/evidencias/2-404.png">
+  <p class="caption">GET http://127.0.0.1:3110/atracoes/2147483647 · Status recebido: 404. </p><h2 class="evidence-heading">8. Evidências de funcionamento <small>· continuação</small></h2>
+  <h3>Criação de atração temporária · HTTP 201</h3>
+  <p>Captura da visualização do registro real do cliente HTTP Node.js/fetch. Ambiente local, em 15/10/2026. A resposta completa e os cabeçalhos estão em docs/evidencias/registros-http.json.</p>
+  <img class="evidence" src="file:///C:/Users/rogerio/OneDrive/Desktop/TESTE002/docs/evidencias/3-201.png">
+  <p class="caption">POST http://127.0.0.1:3110/atracoes · Status recebido: 201. </p><h2 class="evidence-heading">8. Evidências de funcionamento <small>· continuação</small></h2>
+  <h3>Remoção da atração temporária · HTTP 204</h3>
+  <p>Captura da visualização do registro real do cliente HTTP Node.js/fetch. Ambiente local, em 15/10/2026. A resposta completa e os cabeçalhos estão em docs/evidencias/registros-http.json.</p>
+  <img class="evidence" src="file:///C:/Users/rogerio/OneDrive/Desktop/TESTE002/docs/evidencias/4-204.png">
+  <p class="caption">DELETE http://127.0.0.1:3110/atracoes/11 · Status recebido: 204. </p><h2 class="evidence-heading">8. Evidências de funcionamento <small>· API publicada</small></h2>
+<p>Verificação real em 17/10/2026: GET /health, /categorias e /atracoes retornaram HTTP 200; GET /atracoes/2147483647 retornou 404. As consultas de categorias e atrações confirmam o acesso ao banco publicado.</p><img class="evidence" style="max-height:165mm" src="file:///C:/Users/rogerio/OneDrive/Desktop/TESTE002/docs/evidencias/5-publicada.png"><p class="caption">Captura da visualização da resposta real do cliente HTTP Node.js/fetch. Registros integrais: docs/evidencias/registros-publicos.json.</p>
+<h2 class="new-section">9. Links</h2>
+<table><thead><tr><th>Destino</th><th>Endereço</th></tr></thead><tbody><tr><td>Repositório público no GitHub</td><td><a href="https://github.com/ark-pkr/balsas-experience-api">https://github.com/ark-pkr/balsas-experience-api</a></td></tr><tr><td>API publicada</td><td><a href="https://balsas-experience-api-lgdm.onrender.com/categorias">https://balsas-experience-api-lgdm.onrender.com/categorias</a></td></tr></tbody></table>
+<h2>10 DIFICULDADES E APRENDIZADOS</h2>
+<p>Relatos individuais e contribuições revisados e confirmados pela equipe.</p>
+<table><thead><tr><th>Integrante</th><th>Dificuldade</th><th>Solução</th><th>Aprendizado</th></tr></thead><tbody><tr><td>Carinne da Silva Borges</td><td>Distinguir os códigos 200, 201, 204 e 404 na documentação.</td><td>Comparação das requisições e respostas para registrar método, caminho, corpo e status de cada operação.</td><td>Documentar uma API de forma reproduzível, incluindo exemplos e instruções de execução.</td></tr><tr><td>Júlio César Lima dos Reis</td><td>Tratar campos obrigatórios, notas inválidas e registros inexistentes.</td><td>Organização dos controladores e verificação dos retornos HTTP em entradas válidas e inválidas.</td><td>Implementar operações CRUD no Express, validar JSON e utilizar códigos de status adequados.</td></tr><tr><td>João Pedro Strasser Santos</td><td>Representar categorias, tags reutilizáveis e avaliações sem duplicar informações.</td><td>Definição de relações 1:N e N:N no schema, com chaves estrangeiras e exclusão em cascata das avaliações.</td><td>Usar migrações, consultar relações com Prisma e preservar a integridade dos dados.</td></tr><tr><td>Rogério Mota de Melo</td><td>Conectar a aplicação ao banco hospedado e configurar as variáveis de ambiente.</td><td>Configuração de DATABASE_URL, DIRECT_URL e comandos de build, seguida de testes das rotas publicadas.</td><td>Publicar uma API, proteger credenciais e verificar o funcionamento do servidor e do banco.</td></tr></tbody></table>
+
+</html></html>

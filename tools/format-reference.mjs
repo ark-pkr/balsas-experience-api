@@ -1,0 +1,32 @@
+import fs from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {spawn} from 'node:child_process';
+import {once} from 'node:events';
+const out=resolve('output/pdf');
+const source=await fs.readFile(resolve(out,'relatorio-entrega.html'),'utf8');
+let body=source.slice(source.indexOf('</style>')+8).replace(/<header>[\s\S]*?<\/header>/g,'').replace(/<footer>[\s\S]*?<\/footer>/g,'').replace(/<section class="page">/g,'').replace(/<\/section>/g,'');
+body=body.slice(body.indexOf('<h2>1.'));
+body=body.replace(/<p>Para cada integrante:[\s\S]*?<\/p>/,'');
+body=body.replace(/<h3>Antes de enviar pelo portal<\/h3>[\s\S]*?(?=<\/html>)/,'');
+body=body.replace(/<h2>8\. ([\s\S]*?)<\/h2>/g,'<h2 class="evidence-heading">8. $1</h2>');
+body=body.replace('<h2>9.','<h2 class="new-section">9.');
+body=body.replace(/<h3>Conceitos técnicos demonstrados pelo projeto<\/h3>[\s\S]*?(?=<\/html>)/,'');
+body=body.replace(/<h2>(\d+)\. ([\s\S]*?)<\/h2>/g,(_,n,title)=>`<h2>${n} ${title.toUpperCase()}</h2>`);
+body=body.replace(/<div class="pending">PENDENTE: informar a URL pública[\s\S]*?<\/div>/,'<p>A API foi publicada no Render e verificada em 15/10/2026. As rotas /health, /atracoes e /categorias retornaram HTTP 200, com oito atrações e três categorias. A captura da resposta pública ainda deve ser acrescentada.</p>');
+body=body.replace("['API publicada', 'A informar pela equipe']",'');
+body=body.replace(/<td>API publicada<\/td><td>A informar pela equipe<\/td>/g,'<td>API publicada</td><td><a href="https://balsas-experience-api-lgdm.onrender.com">https://balsas-experience-api-lgdm.onrender.com</a></td>');
+body=body.replace('Publicar a API e atualizar sua URL no README e neste documento. O repositório público já foi criado.','Conferir os links do repositório e da API publicada.');
+body=body.replace('<h3>Antes de enviar pelo portal</h3>','<h3>Pendências para a entrega</h3>');
+body=body.replace('A informar pela equipe</td></tr><tr><td>Curso','UNIBALSAS – Centro Universitário de Balsas</td></tr><tr><td>Curso').replace('<td>Curso</td><td>A informar pela equipe','<td>Curso</td><td>Análise e Desenvolvimento de Sistemas');
+const names=['CARINNE DA SILVA BORGES','JOÃO PEDRO STRASSER SANTOS','JÚLIO CÉSAR LIMA DOS REIS','ROGÉRIO MOTA DE MELO'].join('<br>');
+const banner=pathToFileURL(resolve(out,'cabecalho-unibalsas.png')).href;
+const title='BALSAS EXPERIENCE API:<br>API REST PARA ATRAÇÕES TURÍSTICAS DE BALSAS-MA';
+const html=`<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Balsas Experience API</title><style>
+@page{size:A4;margin:43mm 20mm 20mm 30mm}*{box-sizing:border-box}body{font:12pt/1.5 Arial,sans-serif;color:#000;margin:0} .banner{position:fixed;top:-38mm;left:-24mm;width:198mm;height:29mm;object-fit:contain}p{text-align:justify;text-indent:12mm;margin:0 0 9pt}h2{font-size:12pt;text-transform:uppercase;margin:18pt 0 10pt;break-after:avoid}h3{font-size:12pt;margin:12pt 0 6pt;break-after:avoid}h2 small{text-transform:none;font-weight:normal}table{border-collapse:collapse;width:100%;font-size:10pt;line-height:1.2;margin:10pt 0 16pt;table-layout:fixed}th{background:#b90000;color:white;font-weight:bold;text-align:center}th,td{border:1px solid black;padding:5pt;overflow-wrap:anywhere;vertical-align:top}thead{display:table-header-group}tr{break-inside:avoid}a{color:black;overflow-wrap:anywhere}pre{font:9pt/1.35 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #888;padding:9pt;break-inside:avoid}code{font:10pt Consolas,monospace}.pending{border:1px solid #888;padding:9pt;font-size:10pt}.evidence{display:block;width:100%;height:150mm;max-height:150mm;object-fit:contain;break-inside:avoid}.caption{font-size:10pt;text-indent:0}.cover,.titlepage{height:228mm;position:relative;break-after:page;text-align:center}.institution{font-weight:bold;margin:0 0 20pt;text-indent:0;text-align:center}.names{line-height:1.7;text-align:center;text-indent:0}.project{font-size:12pt;line-height:1.7;position:absolute;top:86mm;width:100%;font-weight:bold}.place{position:absolute;bottom:0;width:100%;text-align:center;text-indent:0}.note{position:absolute;top:133mm;right:0;width:85mm;font-size:11pt;line-height:1.3;text-indent:0;text-align:justify}li{margin:5pt 0}.kicker{display:none}.evidence-heading,.new-section{break-before:page}.evidence-heading{margin-top:0}p{orphans:3;widows:3}.caption{break-before:avoid}
+</style><img class="banner" src="${banner}"><section class="cover"><p class="institution">UNIBALSAS – CENTRO UNIVERSITÁRIO DE BALSAS</p><p class="names">${names}</p><div class="project">${title}<br>RELATÓRIO DE ENTREGA DO PROJETO</div><p class="place">Balsas – MA<br>2026</p></section><section class="titlepage"><p class="names">${names}</p><div class="project">${title}<br>RELATÓRIO DE ENTREGA DO PROJETO</div><p class="note">Trabalho de laboratório do curso de Análise e Desenvolvimento de Sistemas do Centro Universitário de Balsas – UNIBALSAS. Apresenta a construção de uma API REST em Node.js e Express, integrada ao PostgreSQL com Prisma ORM.<br><br>Disciplina: Programação para Web.<br>Professor: Marcos David de Souza Ramos.</p><p class="place">Balsas – MA<br>2026</p></section>${body}</html>`;
+const htmlPath=resolve(out,'balsas-experience-api-formatado.html');await fs.writeFile(htmlPath,html.replace(`<img class="banner" src="${banner}">`,''));
+await fs.mkdir('tmp/pdfs/formatado',{recursive:true});
+const pdf=resolve('tmp/pdfs/formatado/sem-cabecalho.pdf');
+const proc=spawn('C:/Program Files/Google/Chrome/Application/chrome.exe',['--headless=new','--disable-gpu','--no-first-run',`--user-data-dir=${resolve('tmp/browser/formatado')}`,'--no-pdf-header-footer',`--print-to-pdf=${pdf}`,pathToFileURL(htmlPath).href],{stdio:'ignore'});
+const [code]=await once(proc,'exit');if(code!==0)throw Error(`Chrome: ${code}`);console.log(pdf);

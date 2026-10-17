@@ -5,7 +5,8 @@
     "dev": "node --watch balsas-experience-api/src/app.js",
     "test": "node tests/api.test.mjs",
     "build": "prisma generate --config prisma7.config.ts && prisma migrate deploy --config prisma7.config.ts",
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seed.js",
+    "docs:pdf": "node tools/build-delivery.mjs && node tools/format-reference.mjs && python tools/finalize-unibalsas.py"
   },
   "devDependencies": {
     "prisma": "^7.10.0"

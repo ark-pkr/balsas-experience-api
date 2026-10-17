@@ -8,6 +8,7 @@ import { once } from 'node:events';
 const data = JSON.parse(await readFile('docs/evidencias/registros-http.json', 'utf8'));
 const out = resolve('output/pdf');
 await mkdir(out, { recursive: true });
+await mkdir('tmp/pdfs', { recursive: true });
 await mkdir('tmp/browser/pdf', { recursive: true });
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const code = value => `<pre>${escape(value)}</pre>`;
@@ -15,20 +16,20 @@ const table = (headers, rows) => `<table><thead><tr>${headers.map(h => `<th>${h}
 const pending = text => `<div class="pending">${text}</div>`;
 const header = '<header>BALSAS EXPERIENCE API <span>Entrega de laboratório · 17/10/2026</span></header>';
 const pages = [];
-const members = ['Carinne Borges da Silva', 'Júlio César Lima dos Reis', 'João Pedro Strasser Santos', 'Rogério Mota de Melo'];
+const members = ['Carinne da Silva Borges', 'Júlio César Lima dos Reis', 'João Pedro Strasser Santos', 'Rogério Mota de Melo'];
 const teamSuggestions = JSON.parse(await readFile('docs/equipe-sugestoes.json', 'utf8'));
 function page(body) { pages.push(`<section class="page">${header}${body}<footer>Balsas Experience API · Relatório de laboratório <span>${pages.length + 1}</span></footer></section>`); }
 
 page(`<div class="kicker">API REST · NODE.JS + POSTGRESQL</div><h1>Balsas Experience API</h1>
-${pending('Revisão da entrega: API publicada e verificada em 17/10/2026. Faltam o nome da equipe, matrículas e confirmação dos relatos individuais.')}
+${pending('Revisão da entrega: API publicada e verificada em 17/10/2026. Equipe identificada pelos nomes dos integrantes. Relatos individuais confirmados pela equipe.')}
 <h2>1. Identificação</h2>${table(['Campo', 'Informação'], [
   ['Instituição', 'UNIBALSAS - Centro Universitário de Balsas'], ['Curso', 'Análise e Desenvolvimento de Sistemas'],
-  ['Disciplina', 'Programação para Web'], ['Professor', 'Marcos Deivd de Spusa Ramos (grafia informada)'],
+  ['Disciplina', 'Programação para Web'], ['Professor', 'Marcos David de Souza Ramos'],
   ['Projeto', 'Balsas Experience API'], ['Data do documento', '17/10/2026'],
 ])}
-<h2>2. A equipe</h2><p>Nome da equipe: <strong>a informar</strong>. Todos os integrantes precisam constar abaixo.</p>
-<p>Contribuições sugeridas para revisão dos integrantes; ainda não confirmadas.</p>
-${table(['Nome completo', 'Matrícula', 'Contribuição proposta'], teamSuggestions.map(m => [m.nome, 'A informar', m.contribuicao]))}
+<h2>2. A equipe</h2><p>Equipe: <strong>Carinne, Júlio César, João Pedro e Rogério</strong>.</p>
+<p>Distribuição de atividades confirmada pela equipe.</p>
+${table(['Nome completo', 'Matrícula', 'Contribuição'], teamSuggestions.map(m => [m.nome, m.matricula ?? 'Não informada', m.contribuicao]))}
 <h2>3. Descrição do projeto</h2>
 <p>A Balsas Experience API disponibiliza um catálogo de atrações turísticas de Balsas-MA. Permite consultar atrações, filtrar por categoria, tag e texto, acessar detalhes e registrar avaliações de visitantes. Também oferece operações para criar, atualizar e remover atrações.</p>
 <p>Serve como fonte de dados para sites e aplicativos voltados a moradores e turistas. O projeto reúne informações dispersas em uma estrutura consultável e persistente: categorias organizam o catálogo, tags permitem cruzar interesses e avaliações registram a experiência dos visitantes.</p>
@@ -102,16 +103,16 @@ ${table(['Destino', 'Endereço'], [['Repositório público no GitHub', '<a href=
 `);
 
 page(`<h2>10. Dificuldades e aprendizados</h2>
-<p>Sugestões para revisão da equipe. Cada integrante deve ajustar e confirmar seu relato conforme sua experiência real.</p>
-${table(['Integrante', 'Dificuldade sugerida', 'Solução sugerida', 'Aprendizado sugerido'], teamSuggestions.map(m => [m.nome, m.dificuldade, m.solucao, m.aprendizado]))}
+<p>Relatos individuais e contribuições revisados e confirmados pela equipe.</p>
+${table(['Integrante', 'Dificuldade', 'Solução', 'Aprendizado'], teamSuggestions.map(m => [m.nome, m.dificuldade, m.solucao, m.aprendizado]))}
 <p>Para cada integrante: descreva um problema concreto, a tentativa que resolveu o problema e o conhecimento adquirido. Exemplos de assuntos que podem ser abordados, se realmente ocorreram: conexão com PostgreSQL, variáveis de ambiente, adaptação ao Prisma 7, relações entre tabelas, migrações, validação de JSON e publicação.</p>
 <h3>Conceitos técnicos demonstrados pelo projeto</h3>
 <p><strong>Prisma 7:</strong> o cliente usa o adaptador PrismaPg para acessar PostgreSQL. <strong>Modelagem:</strong> tags reutilizáveis são associadas às atrações em uma relação N:N. <strong>Integridade:</strong> a exclusão em cascata evita avaliações sem atração. <strong>HTTP:</strong> criação retorna 201 e Location; remoção retorna 204 sem corpo; registro ausente retorna 404.</p>
-<p>Esses conceitos são verificáveis no código; a experiência pessoal de cada integrante será inserida após a confirmação em docs/RELATOS-EQUIPE.md.</p>
+<p>Os relatos completos de cada integrante estão registrados em docs/RELATOS-EQUIPE.md com confirmação da equipe.</p>
 <h3>Verificação técnica realizada nesta revisão</h3>
 <p>A revisão local anterior registrou 15 cenários automatizados aprovados. Foram coletados registros reais de listagem 200, busca 404, criação 201 e remoção 204, usando o banco PostgreSQL 18.6 configurado. O seed não foi executado nesta revisão.</p>
 <h3>Antes de enviar pelo portal</h3>
-<ol><li>Confirmar a identificação acadêmica, a grafia do professor e as contribuições individuais.</li><li>Conferir os links públicos da API e do repositório.</li><li>Confirmar os aprendizados reais de cada integrante e as matrículas.</li><li>Gerar novamente o PDF e nomeá-lo balsas-experience-api-equipe-&lt;nome-da-equipe&gt;.pdf.</li><li>Combinar quem será o único integrante responsável pela submissão e enviar somente o PDF.</li></ol>`);
+<ol><li>Confirmar a identificação acadêmica, a grafia do professor e as contribuições individuais.</li><li>Conferir os links públicos da API e do repositório.</li><li>Revisar os aprendizados de cada integrante.</li><li>Utilizar o PDF atualizado com a identificação da equipe no nome do arquivo.</li><li>Combinar quem será o único integrante responsável pela submissão e enviar somente o PDF.</li></ol>`);
 
 const html = `<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Balsas Experience API - Relatório de entrega</title><style>
 @page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;color:#1c2c40;font:10.3pt/1.45 Arial,sans-serif;background:#e9eef4}
@@ -126,7 +127,7 @@ pre{font:9pt/1.42 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere
 </style>${pages.join('')}</html>`;
 const htmlPath = resolve(out, 'relatorio-entrega.html');
 await writeFile(htmlPath, html);
-const pdfPath = resolve(out, 'balsas-experience-api-equipe-a-definir.pdf');
+const pdfPath = resolve('tmp/pdfs/relatorio-tecnico.pdf');
 const chrome = process.env.CHROME_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const browser = spawn(chrome, ['--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check',
   `--user-data-dir=${resolve('tmp/browser/pdf')}`, '--no-pdf-header-footer',
