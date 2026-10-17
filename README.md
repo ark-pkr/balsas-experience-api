@@ -1,212 +1,176 @@
 # Balsas Experience API
 
-API REST para consultar e gerenciar atrações turísticas de Balsas-MA, com categorias, tags e avaliações. Serve como fonte de dados para aplicações de turismo destinadas a moradores e visitantes, reunindo um catálogo pesquisável em PostgreSQL.
+API REST de atrações turísticas de Balsas-MA, construída com Node.js e Express e integrada ao PostgreSQL por meio do Prisma ORM. Oferece um catálogo pesquisável por texto, categoria e tag, além de cadastro de atrações e avaliações de visitantes.
 
-## Equipe e links
+Centraliza informações para sites e aplicativos destinados a turistas e moradores. Categorias organizam as atrações; tags permitem cruzar interesses; avaliações registram a experiência dos visitantes.
 
-Integrantes informados pela equipe. Matrículas e contribuições ainda precisam ser confirmadas.
+## API publicada e repositório
 
-| Nome completo | Matrícula | Contribuição |
+- API: https://balsas-experience-api-lgdm.onrender.com
+- Categorias: https://balsas-experience-api-lgdm.onrender.com/categorias
+- Atrações: https://balsas-experience-api-lgdm.onrender.com/atracoes
+- Repositório público: https://github.com/ark-pkr/balsas-experience-api
+
+Em 17/10/2026, as rotas /health, /categorias e /atracoes responderam 200; /atracoes/2147483647 respondeu 404. Registros completos em [registros-publicos.json](docs/evidencias/registros-publicos.json).
+
+## Identificação e equipe
+
+Instituição: UNIBALSAS - Centro Universitário de Balsas. Curso: Análise e Desenvolvimento de Sistemas (conforme documento existente). Disciplina: Programação para Web. Professor: Marcos Deivd de Spusa Ramos (grafia informada). Data: 17/10/2026.
+
+Nome da equipe e matrículas: não informados. Contribuições abaixo são propostas existentes, sujeitas à confirmação dos integrantes.
+
+| Nome completo | Matrícula | Contribuição proposta |
 | --- | --- | --- |
-| Carinne Borges da Silva | A informar | A informar |
-| Júlio César Lima dos Reis | A informar | A informar |
-| João Pedro Strasser Santos | A informar | A informar |
-| Rogério Mota de Melo | A informar | A informar |
+| Carinne Borges da Silva | A informar | Organização da documentação e descrição dos endpoints. |
+| Júlio César Lima dos Reis | A informar | Desenvolvimento das rotas e validação dos dados recebidos. |
+| João Pedro Strasser Santos | A informar | Modelagem do banco e integração com Prisma. |
+| Rogério Mota de Melo | A informar | Configuração do ambiente, testes e publicação no Render. |
 
-- Nome da equipe: **a informar**.
-- Repositório público no GitHub: [ark-pkr/balsas-experience-api](https://github.com/ark-pkr/balsas-experience-api).
-- API publicada: **URL a informar**.
-- Documento de entrega: pasta `output/pdf/`. Enquanto houver pendências, o PDF é um rascunho.
+## Tecnologias
 
-## Tecnologias utilizadas
-
-| Tecnologia | Versão verificada | Finalidade |
+| Tecnologia | Versão de referência | Uso |
 | --- | --- | --- |
-| Node.js | 24.13.1 | Executar JavaScript no servidor |
-| Express | 5.2.1 | Rotas HTTP e tratamento de requisições |
-| Prisma CLI e Client | 7.10.0 | Modelo, migrações e consultas |
-| @prisma/adapter-pg | 7.10.0 | Integrar Prisma ao driver PostgreSQL |
-| PostgreSQL | 18.6 | Persistência relacional |
-| pg | 8.23.1 | Driver PostgreSQL |
-| dotenv | 18.0.5 | Carregar variáveis de ambiente |
-| npm | 11.17.0 | Dependências e scripts |
+| Node.js | 24.13.1 | Execução do JavaScript no servidor |
+| npm | 11.17.0 | Instalação e scripts; referência da revisão anterior |
+| Express | 5.2.1 | Rotas e respostas HTTP |
+| Prisma CLI / Client | 7.10.0 | Modelagem, migrações e consultas |
+| PostgreSQL | 18.6 | Persistência relacional; versão registrada na coleta local |
+| @prisma/adapter-pg | 7.10.0 | Integração Prisma/PostgreSQL |
+| pg | 8.23.1 | Driver de acesso ao banco |
+| dotenv | 18.0.5 | Leitura do arquivo .env |
+
+As dependências exatas estão no package-lock.json; as versões do servidor e banco publicados podem diferir das referências locais.
 
 ## Pré-requisitos
 
-Node.js 24 LTS (versão utilizada na verificação), npm, Git e um banco PostgreSQL acessível, local ou hospedado, por exemplo no Neon.
+Node.js 24 LTS, npm, Git e um banco PostgreSQL acessível e vazio para a instalação inicial. Execute os comandos na raiz, onde estão package.json e prisma7.config.ts, e não na subpasta de código.
 
-## Instalar e configurar
+## Instalação e configuração
 
-Clone o repositório público:
-
-```sh
+~~~sh
 git clone https://github.com/ark-pkr/balsas-experience-api.git
 cd balsas-experience-api
 npm ci
-```
+~~~
 
-Execute os comandos na raiz, onde estão `package.json`, `prisma7.config.ts` e `prisma/`. O código HTTP está em `balsas-experience-api/src/`.
+Copie .env.example para .env (no PowerShell: Copy-Item .env.example .env) e preencha suas credenciais. Exemplo local, sem senha real:
 
-Copie `.env.example` para `.env` e preencha as credenciais somente no arquivo `.env`:
-
-```dotenv
-DATABASE_URL="postgresql://USUARIO:SENHA_FICTICIA@HOST-POOLER/neondb?sslmode=require"
-DIRECT_URL="postgresql://USUARIO:SENHA_FICTICIA@HOST-DIRETO/neondb?sslmode=require&connect_timeout=30"
+~~~dotenv
+DATABASE_URL="postgresql://USUARIO:SENHA_FICTICIA@localhost:5432/balsas_experience?schema=public"
+DIRECT_URL="postgresql://USUARIO:SENHA_FICTICIA@localhost:5432/balsas_experience?schema=public"
 PORT=3000
-```
+~~~
 
-As senhas acima são fictícias. O `.env` está ignorado pelo Git. A aplicação usa `DATABASE_URL`; o Prisma CLI usa `DIRECT_URL` ou, na ausência dela, `DATABASE_URL`.
+DATABASE_URL é usada pela aplicação. DIRECT_URL é usada pelo Prisma CLI e pode ser omitida quando a mesma conexão serve para consultas e migrações. Para bancos hospedados, use os endereços fornecidos pelo provedor e os parâmetros TLS necessários. O banco deve existir antes das migrações. Nunca publique .env ou credenciais reais.
 
-## Migrações, carga inicial e servidor
+## Migrações, população e execução
 
-```sh
+~~~sh
 npx prisma generate --config prisma7.config.ts
 npx prisma migrate deploy --config prisma7.config.ts
 npm run seed
 npm start
-```
+~~~
 
-**Execute o seed somente em banco novo ou descartável:** ele apaga os dados e insere oito atrações e três avaliações de exemplo. Se o banco já estiver preenchido, pule `npm run seed`.
+O seed **apaga os dados existentes** e insere oito atrações e três avaliações. Execute somente em banco novo ou descartável. Em um banco já populado, pule o seed. Para desenvolvimento: npm run dev. Servidor local: http://localhost:3000.
 
-Acesse `http://localhost:3000/health` e `http://localhost:3000/atracoes`. Para reinício automático, use `npm run dev`. Novas migrações em desenvolvimento: `npx prisma migrate dev --config prisma7.config.ts --name nome_da_alteracao`.
+Para criar novas migrações durante o desenvolvimento: npx prisma migrate dev --config prisma7.config.ts --name nome_da_mudanca.
 
 ## Modelo de dados
 
-| Tabela | Campos |
-| --- | --- |
-| Categoria | id: inteiro, PK automática; nome: texto único |
-| Tag | id: inteiro, PK automática; nome: texto único |
-| Atracao | id: inteiro, PK automática; nome e descricao: texto; cidade: texto, padrão Balsas; estado: texto, padrão MA; distanciaCentroKm: inteiro opcional; criadaEm: data/hora automática; categoriaId: FK obrigatória |
-| Avaliacao | id: inteiro, PK automática; visitante: texto; nota: inteiro; comentario: texto opcional; criadaEm: data/hora automática; atracaoId: FK obrigatória |
-| _AtracaoToTag | A: FK para Atracao; B: FK para Tag; chave primária composta (A, B) |
+- Categoria: id (PK), nome (único); possui várias atrações.
+- Tag: id (PK), nome (único); relaciona-se com várias atrações.
+- Atracao: id (PK), nome, descricao, cidade (padrão Balsas), estado (padrão MA), distanciaCentroKm (opcional), criadaEm e categoriaId (FK).
+- Avaliacao: id (PK), visitante, nota, comentario (opcional), criadaEm e atracaoId (FK).
+- _AtracaoToTag: associação N:N gerenciada pelo Prisma, com chaves A e B e chave primária composta.
 
-Categoria tem várias atrações; Atracao tem várias avaliações; Atracao e Tag têm relação muitos-para-muitos. As tags ficam em uma tabela separada para reutilizar nomes entre atrações, evitar duplicações e permitir filtros relacionais.
-
-Excluir uma atração remove suas avaliações e vínculos com tags em cascata. Categorias e tags permanecem cadastradas. A nota de 1 a 5 é validada pela API.
+Tags ficam em tabela separada para reutilizar nomes entre atrações, evitar duplicação e permitir filtros por relacionamento. A exclusão de uma atração remove suas avaliações e associações; preserva categorias e tags. Veja [schema.prisma](prisma/schema.prisma).
 
 ## Endpoints
 
-| Método | Caminho | Função | Status esperado |
+| Método | Caminho | Descrição | Status esperado |
 | --- | --- | --- | --- |
 | GET | / | Identificação da API | 200 |
-| GET | /health | Estado do processo HTTP; não verifica o banco | 200 |
-| GET | /atracoes | Listar por nome, com categoria e tags | 200 |
-| GET | /atracoes?categoria=Lazer&tag=lazer&q=rio | Combinar filtros de categoria, tag e texto | 200 |
-| GET | /atracoes/:id | Detalhar, com avaliações, média e total | 200, 404 |
-| GET | /categorias | Categorias e contagem de atrações | 200 |
-| POST | /atracoes | Criar atração | 201, 400, 409 |
-| PUT | /atracoes/:id | Substituir dados e tags | 200, 400, 404, 409 |
-| DELETE | /atracoes/:id | Remover atração e avaliações | 204, 404 |
-| POST | /atracoes/:id/avaliacoes | Registrar avaliação | 201, 400, 404 |
+| GET | /health | Estado do processo HTTP | 200 |
+| GET | /categorias | Categorias com contagem de atrações | 200 |
+| GET | /atracoes | Lista; aceita categoria, tag e q | 200 |
+| GET | /atracoes/:id | Detalhes, avaliações, média e total | 200, 404 |
+| POST | /atracoes | Cria atração | 201, 400, 409 |
+| PUT | /atracoes/:id | Substitui dados e tags | 200, 400, 404, 409 |
+| DELETE | /atracoes/:id | Remove atração | 204, 404 |
+| POST | /atracoes/:id/avaliacoes | Registra avaliação | 201, 400, 404 |
 
-Falhas inesperadas podem retornar 500. Os filtros ignoram maiúsculas/minúsculas. POST e PUT exigem `nome`, `descricao` e `categoria`; `cidade`, `estado`, `distanciaCentroKm` e `tags` são opcionais. PUT substitui a lista de tags e restaura os padrões dos campos opcionais omitidos.
+Falhas inesperadas podem retornar 500. /health verifica o processo HTTP; /categorias e /atracoes exercitam o banco. As rotas de escrita não exigem autenticação nesta versão acadêmica.
 
-### Exemplos de requisição
+POST e PUT exigem nome, descricao e categoria (nome da categoria, não ID). Os campos cidade, estado, distanciaCentroKm e tags são opcionais. PUT substitui as tags e restaura os padrões dos campos opcionais omitidos. Avaliações exigem visitante e nota inteira de 1 a 5; comentario é opcional.
 
-Use `curl.exe` no PowerShell ou `curl` no Linux/macOS:
+## Exemplos de requisição
 
-```sh
-curl -i http://localhost:3000/
-curl -i http://localhost:3000/health
-curl -i http://localhost:3000/atracoes
-curl -i "http://localhost:3000/atracoes?tag=rio"
-curl -i http://localhost:3000/atracoes/2147483647
-curl -i http://localhost:3000/categorias
-```
+Use curl.exe no PowerShell. As escritas de exemplo abaixo usam o servidor local.
 
-Exemplo completo de criação:
+~~~sh
+curl -i "https://balsas-experience-api-lgdm.onrender.com/categorias"
+curl -i "https://balsas-experience-api-lgdm.onrender.com/atracoes?categoria=Lazer&tag=lazer&q=rio"
+curl -i "https://balsas-experience-api-lgdm.onrender.com/atracoes/2147483647"
+curl -i http://localhost:3000/atracoes/1
+curl -i -X POST http://localhost:3000/atracoes -H "Content-Type: application/json" -d '{"nome":"Passeio de exemplo","descricao":"Registro de teste","categoria":"Lazer","tags":["lazer"]}'
+curl -i -X PUT http://localhost:3000/atracoes/ID_CRIADO -H "Content-Type: application/json" -d '{"nome":"Passeio atualizado","descricao":"Descrição revisada","categoria":"Lazer","tags":["lazer"]}'
+curl -i -X POST http://localhost:3000/atracoes/ID_CRIADO/avaliacoes -H "Content-Type: application/json" -d '{"visitante":"Visitante de teste","nota":5,"comentario":"Ótima experiência"}'
+curl -i -X DELETE http://localhost:3000/atracoes/ID_CRIADO
+~~~
 
-```http
-POST /atracoes HTTP/1.1
-Host: localhost:3000
-Content-Type: application/json
+Substitua ID_CRIADO pelo id devolvido na criação. Os exemplos de shell são para Bash; para um cliente HTTP com JSON independente do shell, use [requisicoes.http](docs/requisicoes.http).
 
-{
-  "nome": "Atração de exemplo",
-  "descricao": "Registro ilustrativo para demonstrar a API.",
-  "categoria": "Lazer",
-  "cidade": "Balsas",
-  "estado": "MA",
-  "distanciaCentroKm": 2,
-  "tags": ["lazer"]
-}
-```
+Exemplo completo de consulta publicada:
 
-Resposta ilustrativa: IDs e data variam conforme o banco.
+~~~http
+GET /categorias HTTP/1.1
+Host: balsas-experience-api-lgdm.onrender.com
+Accept: application/json
+~~~
 
-```http
-HTTP/1.1 201 Created
-Location: /atracoes/123
-Content-Type: application/json
+~~~http
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
 
-{
-  "id": 123,
-  "nome": "Atração de exemplo",
-  "descricao": "Registro ilustrativo para demonstrar a API.",
-  "cidade": "Balsas",
-  "estado": "MA",
-  "distanciaCentroKm": 2,
-  "criadaEm": "2026-10-15T12:00:00.000Z",
-  "categoriaId": 1,
-  "categoria": { "id": 1, "nome": "Lazer" },
-  "tags": [{ "id": 1, "nome": "lazer" }]
-}
-```
+[
+  {
+    "id": 1,
+    "nome": "Histórico e Urbano",
+    "atracoes": 4
+  },
+  {
+    "id": 2,
+    "nome": "Lazer",
+    "atracoes": 1
+  },
+  {
+    "id": 3,
+    "nome": "Natureza e Aventura",
+    "atracoes": 3
+  }
+]
+~~~
 
-Substitua `123` pelo ID retornado na criação:
+Uma busca inexistente retorna 404 com {"erro":"Atração não encontrada"}. Uma criação válida retorna 201, o objeto criado e o cabeçalho Location: /atracoes/ID. Uma exclusão bem-sucedida retorna 204 sem corpo.
 
-```http
-GET /atracoes/123 HTTP/1.1
-Host: localhost:3000
-```
+## Verificação e evidências
 
-```http
-PUT /atracoes/123 HTTP/1.1
-Host: localhost:3000
-Content-Type: application/json
-
-{"nome":"Atração atualizada","descricao":"Nova descrição","categoria":"Lazer","tags":["lazer"]}
-```
-
-```http
-POST /atracoes/123/avaliacoes HTTP/1.1
-Host: localhost:3000
-Content-Type: application/json
-
-{"visitante":"Visitante de exemplo","nota":5,"comentario":"Gostei do passeio."}
-```
-
-```http
-DELETE /atracoes/123 HTTP/1.1
-Host: localhost:3000
-```
-
-Remoção bem-sucedida: `204 No Content`, sem corpo. Busca por ID inexistente: `404`, com `{"erro":"Atração não encontrada"}`.
-
-## Testes e evidências
-
-```sh
+~~~sh
 npm test
-```
+node tools/capture-public.mjs
+~~~
 
-O teste inicia uma API temporária na porta 3108 e depende de um banco com a carga inicial. Cria, atualiza, avalia e remove uma atração temporária; não executa o seed. Na verificação de 15/10/2026, os 15 cenários passaram, incluindo média e exclusão em cascata.
+Os testes de integração dependem do banco configurado em .env, usam a porta 3108 e criam/removem um registro temporário. Não executam seed. Evidências locais de 200, 404, 201 e 204 estão em docs/evidencias; a captura 5-publicada.png mostra a resposta real da API publicada. As capturas são visualizações dos registros do cliente HTTP Node.js/fetch; os JSON integrais também estão preservados.
 
-Os registros HTTP e capturas locais ficam em `docs/evidencias/`. A evidência pública depende da URL de publicação.
+## Hospedagem
 
-## Publicação no Render
+Render: configuração em render.yaml, build npm ci --include=dev && npm run build, início npm start. Configurar DATABASE_URL e DIRECT_URL no painel; PORT é fornecida pela hospedagem. O build gera o cliente e aplica migrações; não executa seed.
 
-O repositório contém `render.yaml` com a configuração de um Web Service gratuito e Node.js 24.13.1. Para iniciar a configuração, use [Deploy to Render](https://render.com/deploy?repo=https://github.com/ark-pkr/balsas-experience-api). O fluxo exige uma conta Render e os valores de `DATABASE_URL` e `DIRECT_URL` no painel; o arquivo não contém credenciais reais. Esse link configura o serviço, mas não é o endereço da API publicada.
+## Dificuldades e aprendizados
 
-1. Publique este projeto em um repositório público no GitHub, sem `.env` nem `node_modules`.
-2. Crie um Web Service no Render conectado ao repositório, usando a raiz do projeto.
-3. Build Command: `npm ci && npm run build`. Start Command: `npm start`.
-4. Cadastre `DATABASE_URL` e `DIRECT_URL` como variáveis secretas.
-5. O build gera o cliente Prisma e aplica migrações. O seed é separado e só deve ser executado se o banco estiver vazio.
-6. Verifique `/health` e `/atracoes` na URL pública e capture o funcionamento.
-7. Atualize os links do README e do PDF antes de submeter.
+Os relatos individuais propostos estão em [RELATOS-EQUIPE.md](docs/RELATOS-EQUIPE.md) e precisam ser confirmados pelos integrantes. O código demonstra integração do Prisma 7 com PrismaPg, relações 1:N e N:N, migrações, exclusão em cascata e respostas HTTP 201/204/404. Esses resultados técnicos não substituem os relatos pessoais exigidos na atividade.
 
-O servidor escuta `0.0.0.0` e usa a `PORT` da hospedagem, ou 3000 localmente.
+## Relatório e entrega
 
-## Entrega acadêmica
-
-Cada integrante deve confirmar sua contribuição, dificuldade e aprendizado real. Apenas um integrante envia o PDF pelo portal, com o nome `balsas-experience-api-equipe-<nome-da-equipe>.pdf`. O PDF deve conter os dez tópicos pedidos, os links públicos e as evidências locais e públicas.
+PDF atualizado: [relatório](output/pdf/balsas-experience-api-equipe-a-definir.pdf). Antes da submissão, preencher as matrículas, confirmar o nome da equipe e os relatos individuais, conferir a grafia do professor e renomear para balsas-experience-api-equipe-NOME-DA-EQUIPE.pdf. Apenas um integrante envia somente o PDF pelo portal, até 17/10/2026 às 23h30.

@@ -1,0 +1,378 @@
+{
+  "client": "Node.js fetch",
+  "records": [
+    {
+      "method": "GET",
+      "url": "https://balsas-experience-api-lgdm.onrender.com/health",
+      "status": 200,
+      "timestamp": "2026-10-17T16:03:46.424Z",
+      "durationMs": 422,
+      "responseHeaders": {
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a4c089065f74aedb-GRU",
+        "connection": "keep-alive",
+        "content-encoding": "br",
+        "content-length": "19",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Sat, 17 Oct 2026 16:03:46 GMT",
+        "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+        "rndr-id": "dc75060d-3d4b-4d84",
+        "server": "cloudflare",
+        "vary": "Accept-Encoding",
+        "x-powered-by": "Express",
+        "x-render-origin-server": "Render"
+      },
+      "responseBody": {
+        "status": "ok"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "https://balsas-experience-api-lgdm.onrender.com/categorias",
+      "status": 200,
+      "timestamp": "2026-10-17T16:03:48.401Z",
+      "durationMs": 1976,
+      "responseHeaders": {
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a4c089081856aedb-GRU",
+        "connection": "keep-alive",
+        "content-encoding": "br",
+        "content-length": "98",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Sat, 17 Oct 2026 16:03:48 GMT",
+        "etag": "W/\"8c-biXzj546H/K1BVsL/kgSXta962I\"",
+        "rndr-id": "81802602-ec63-4433",
+        "server": "cloudflare",
+        "vary": "Accept-Encoding",
+        "x-powered-by": "Express",
+        "x-render-origin-server": "Render"
+      },
+      "responseBody": [
+        {
+          "id": 1,
+          "nome": "Histórico e Urbano",
+          "atracoes": 4
+        },
+        {
+          "id": 2,
+          "nome": "Lazer",
+          "atracoes": 1
+        },
+        {
+          "id": 3,
+          "nome": "Natureza e Aventura",
+          "atracoes": 3
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "url": "https://balsas-experience-api-lgdm.onrender.com/atracoes",
+      "status": 200,
+      "timestamp": "2026-10-17T16:03:50.088Z",
+      "durationMs": 1687,
+      "responseHeaders": {
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a4c089146eeaaedb-GRU",
+        "connection": "keep-alive",
+        "content-encoding": "br",
+        "content-length": "949",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Sat, 17 Oct 2026 16:03:50 GMT",
+        "etag": "W/\"d3c-Mr5RQqa+EnqsGVEu4GK1bUCB2Wc\"",
+        "rndr-id": "8860c618-590f-4435",
+        "server": "cloudflare",
+        "vary": "Accept-Encoding",
+        "x-powered-by": "Express",
+        "x-render-origin-server": "Render"
+      },
+      "responseBody": [
+        {
+          "id": 6,
+          "nome": "Cachoeira das Três Marias",
+          "descricao": "Formada por três quedas d'água, é uma das atrações naturais mais conhecidas da região.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": 50,
+          "criadaEm": "2026-10-06T00:39:17.272Z",
+          "categoriaId": 3,
+          "categoria": {
+            "id": 3,
+            "nome": "Natureza e Aventura"
+          },
+          "tags": [
+            {
+              "id": 12,
+              "nome": "aventura"
+            },
+            {
+              "id": 13,
+              "nome": "cachoeira"
+            },
+            {
+              "id": 11,
+              "nome": "natureza"
+            },
+            {
+              "id": 14,
+              "nome": "trilha"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "nome": "Cachoeira do Macapá",
+          "descricao": "Considerada a maior queda da região, com aproximadamente 65 metros de altura.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": 85,
+          "criadaEm": "2026-10-06T00:39:17.967Z",
+          "categoriaId": 3,
+          "categoria": {
+            "id": 3,
+            "nome": "Natureza e Aventura"
+          },
+          "tags": [
+            {
+              "id": 12,
+              "nome": "aventura"
+            },
+            {
+              "id": 13,
+              "nome": "cachoeira"
+            },
+            {
+              "id": 15,
+              "nome": "ecoturismo"
+            },
+            {
+              "id": 11,
+              "nome": "natureza"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "nome": "Descida de boia no Rio Balsas",
+          "descricao": "Passeio tradicional em que moradores e turistas descem o Rio Balsas em câmaras de pneu.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": null,
+          "criadaEm": "2026-10-06T00:39:18.580Z",
+          "categoriaId": 3,
+          "categoria": {
+            "id": 3,
+            "nome": "Natureza e Aventura"
+          },
+          "tags": [
+            {
+              "id": 12,
+              "nome": "aventura"
+            },
+            {
+              "id": 15,
+              "nome": "ecoturismo"
+            },
+            {
+              "id": 8,
+              "nome": "lazer"
+            },
+            {
+              "id": 11,
+              "nome": "natureza"
+            },
+            {
+              "id": 10,
+              "nome": "rio"
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "nome": "Igreja Matriz de Santo Antônio e Praça da Matriz",
+          "descricao": "Considerado o marco zero da cidade, o local carrega a história do início do município.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": 0,
+          "criadaEm": "2026-10-06T00:39:13.681Z",
+          "categoriaId": 1,
+          "categoria": {
+            "id": 1,
+            "nome": "Histórico e Urbano"
+          },
+          "tags": [
+            {
+              "id": 3,
+              "nome": "arquitetura"
+            },
+            {
+              "id": 2,
+              "nome": "cultura"
+            },
+            {
+              "id": 1,
+              "nome": "história"
+            },
+            {
+              "id": 4,
+              "nome": "urbano"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "nome": "Museu Municipal Gilza Magalhães Ribeiro",
+          "descricao": "Espaço importante para preservar e contar a história local e cultural da região.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": null,
+          "criadaEm": "2026-10-06T00:39:15.841Z",
+          "categoriaId": 1,
+          "categoria": {
+            "id": 1,
+            "nome": "Histórico e Urbano"
+          },
+          "tags": [
+            {
+              "id": 2,
+              "nome": "cultura"
+            },
+            {
+              "id": 1,
+              "nome": "história"
+            },
+            {
+              "id": 7,
+              "nome": "museu"
+            },
+            {
+              "id": 5,
+              "nome": "patrimônio"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "nome": "Ponte de Madeira",
+          "descricao": "Construída há mais de 40 anos, é um patrimônio cultural e cartão-postal que liga pontos da cidade.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": null,
+          "criadaEm": "2026-10-06T00:39:14.438Z",
+          "categoriaId": 1,
+          "categoria": {
+            "id": 1,
+            "nome": "Histórico e Urbano"
+          },
+          "tags": [
+            {
+              "id": 2,
+              "nome": "cultura"
+            },
+            {
+              "id": 6,
+              "nome": "fotografia"
+            },
+            {
+              "id": 1,
+              "nome": "história"
+            },
+            {
+              "id": 5,
+              "nome": "patrimônio"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "nome": "Porto dos Caraíbas",
+          "descricao": "Conhecido como o verdadeiro berço histórico do surgimento do município.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": null,
+          "criadaEm": "2026-10-06T00:39:15.362Z",
+          "categoriaId": 1,
+          "categoria": {
+            "id": 1,
+            "nome": "Histórico e Urbano"
+          },
+          "tags": [
+            {
+              "id": 2,
+              "nome": "cultura"
+            },
+            {
+              "id": 1,
+              "nome": "história"
+            },
+            {
+              "id": 5,
+              "nome": "patrimônio"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "nome": "Prainha",
+          "descricao": "Ponto de encontro à beira do rio, para lazer, descanso e dias de calor com a família.",
+          "cidade": "Balsas",
+          "estado": "MA",
+          "distanciaCentroKm": null,
+          "criadaEm": "2026-10-06T00:39:16.493Z",
+          "categoriaId": 2,
+          "categoria": {
+            "id": 2,
+            "nome": "Lazer"
+          },
+          "tags": [
+            {
+              "id": 9,
+              "nome": "família"
+            },
+            {
+              "id": 8,
+              "nome": "lazer"
+            },
+            {
+              "id": 11,
+              "nome": "natureza"
+            },
+            {
+              "id": 10,
+              "nome": "rio"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "url": "https://balsas-experience-api-lgdm.onrender.com/atracoes/2147483647",
+      "status": 404,
+      "timestamp": "2026-10-17T16:03:50.553Z",
+      "durationMs": 465,
+      "responseHeaders": {
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a4c0891efcb4aedb-GRU",
+        "connection": "keep-alive",
+        "content-encoding": "br",
+        "content-length": "40",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Sat, 17 Oct 2026 16:03:50 GMT",
+        "etag": "W/\"24-nYlfGEuTSNGi8Xe8qdFCh4yYRaY\"",
+        "rndr-id": "1b194c8a-5ce7-4b2b",
+        "server": "cloudflare",
+        "vary": "Accept-Encoding",
+        "x-powered-by": "Express",
+        "x-render-origin-server": "Render"
+      },
+      "responseBody": {
+        "erro": "Atração não encontrada"
+      }
+    }
+  ]
+}

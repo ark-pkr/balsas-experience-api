@@ -1,23 +1,18 @@
-# Pendências para finalizar a submissão
+# Pendências de identificação para submissão
 
-A parte técnica foi documentada e verificada. Estes dados não existem nos arquivos e precisam ser confirmados pela equipe:
+Documentação técnica e links atualizados em 17/10/2026. API publicada verificada com respostas 200 e 404. Captura em docs/evidencias/5-publicada.png.
 
-- Nome da equipe e data final da entrega.
-- Instituição, curso, disciplina e professor.
-- Matrícula e contribuição de todos os integrantes. Nomes confirmados: Carinne Borges da Silva; Júlio César Lima dos Reis; João Pedro Strasser Santos; Rogério Mota de Melo.
-- Dificuldade concreta, solução e aprendizado de cada integrante.
-- URL da API publicada. Repositório público criado: https://github.com/ark-pkr/balsas-experience-api.
-- Captura da API pública respondendo a uma requisição.
-- Nome do único integrante responsável pela submissão.
+- Nome da equipe para o nome definitivo do PDF.
+- Matrícula de Carinne Borges da Silva, Júlio César Lima dos Reis, João Pedro Strasser Santos e Rogério Mota de Melo.
+- Confirmar contribuições e relatos individuais propostos; não foram declarados como fatos.
+- Conferir grafia do professor informada: Marcos Deivd de Spusa Ramos.
+- Confirmar instituição e curso preservados do documento existente: UNIBALSAS; Análise e Desenvolvimento de Sistemas.
+- Definir um único responsável pela submissão.
 
-Não submeter o PDF de rascunho. Depois de confirmar os dados, atualizar README e relatório, inserir a captura pública e gerar o PDF final com o nome exigido.
+Disciplina informada: Programação para Web.
+API: https://balsas-experience-api-lgdm.onrender.com/categorias
+GitHub: https://github.com/ark-pkr/balsas-experience-api
 
-## Arquivos e reprodução
+PDF atualizado: output/pdf/balsas-experience-api-equipe-a-definir.pdf. Preencher os dados individuais e renomear antes do envio. Os PDFs antigos não são a versão atual.
 
-- `docs/evidencias/registros-http.json`: requisições e respostas reais completas, sem credenciais.
-- `docs/evidencias/*.png`: capturas da visualização dos registros do cliente HTTP Node.js/fetch.
-- `node tools/capture-evidence.mjs`: coleta novamente as quatro evidências locais, criando e removendo uma atração temporária. Não executa seed.
-- `node tools/build-delivery.mjs`: gera o relatório HTML e o PDF de rascunho. Requer Google Chrome instalado no Windows; outro caminho pode ser informado pela variável `CHROME_PATH`.
-- `output/pdf/relatorio-entrega.html`: fonte visual do documento, editável.
-
-Os perfis temporários do navegador ficam em `tmp/`, que é ignorado pelo Git. Não publicar `.env`.
+Regerar: node tools/capture-public.mjs e node tools/build-delivery.mjs. O primeiro só consulta a API pública; não altera os dados. As quatro evidências locais originais são de 15/10/2026.

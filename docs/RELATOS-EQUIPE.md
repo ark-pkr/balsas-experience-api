@@ -1,25 +1,10 @@
-# Dificuldades e aprendizados: confirmação dos integrantes
+# Dificuldades e aprendizados
 
-Preencha com experiências reais. Estes campos não atribuem tarefas ou experiências a ninguém antes da confirmação.
+Sugestões para revisão da equipe. Cada integrante deve ajustar e confirmar o texto conforme sua experiência real.
 
-| Integrante | O que fez | Dificuldade concreta | Como resolveu | O que aprendeu |
-| --- | --- | --- | --- | --- |
-| Carinne Borges da Silva | A confirmar | A confirmar | A confirmar | A confirmar |
-| Júlio César Lima dos Reis | A confirmar | A confirmar | A confirmar | A confirmar |
-| João Pedro Strasser Santos | A confirmar | A confirmar | A confirmar | A confirmar |
-| Rogério Mota de Melo | A confirmar | A confirmar | A confirmar | A confirmar |
-
-## Modelo de relato individual
-
-“Fiquei responsável por [tarefa realmente executada]. A dificuldade foi [problema concreto]. Resolvi por meio de [ação realizada e resultado]. Aprendi [conceito ou habilidade], que apliquei em [parte do projeto].”
-
-## Perguntas para lembrar do trabalho
-
-- Quem implementou as rotas e os controllers? Qual erro encontrou?
-- Quem criou o schema e as relações? Como verificou as migrações?
-- Quem configurou o banco e as variáveis? Como verificou a conexão?
-- Quem realizou testes, documentação e publicação? Qual resultado conseguiu comprovar?
-
-## Evidências técnicas verificadas na revisão
-
-O projeto usa Node.js, Express, PostgreSQL 18.6 e Prisma 7.10.0. Os 15 cenários automatizados passaram na revisão local. Foram registradas respostas reais de listagem 200, busca inexistente 404, criação 201 e remoção 204. O código tem categoria 1:N atração, atração 1:N avaliação e atração N:N tag; avaliações são removidas em cascata. Estes fatos ajudam a contextualizar o relato, mas não demonstram quem executou cada tarefa.
+| Integrante | Dificuldade sugerida | Solução sugerida | Aprendizado sugerido |
+| --- | --- | --- | --- |
+| Carinne Borges da Silva | Entender os códigos de status HTTP. | Revisou as respostas durante os testes para documentá-las. | Documentar requisições, respostas e comportamentos da API. |
+| Júlio César Lima dos Reis | Validar os campos enviados em JSON. | Testou entradas válidas e inválidas e ajustou as verificações. | Criar rotas no Express e retornar mensagens de erro adequadas. |
+| João Pedro Strasser Santos | Compreender as relações entre atrações, categorias, tags e avaliações. | Revisou o schema e conferiu os vínculos no banco. | Modelar relações e utilizar migrações e consultas com Prisma. |
+| Rogério Mota de Melo | Configurar a conexão com PostgreSQL e as variáveis de ambiente na hospedagem. | Conferiu as configurações e testou os endpoints publicados. | Publicar uma API e verificar a comunicação entre servidor e banco. |

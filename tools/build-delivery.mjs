@@ -4,7 +4,7 @@ import { pathToFileURL } from 'node:url';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 
-// Gera um rascunho explícito até a equipe fornecer identificação e links públicos.
+// Gera o relatório com evidências reais e sinaliza os dados individuais pendentes.
 const data = JSON.parse(await readFile('docs/evidencias/registros-http.json', 'utf8'));
 const out = resolve('output/pdf');
 await mkdir(out, { recursive: true });
@@ -13,24 +13,27 @@ const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '
 const code = value => `<pre>${escape(value)}</pre>`;
 const table = (headers, rows) => `<table><thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
 const pending = text => `<div class="pending">${text}</div>`;
-const header = '<header>BALSAS EXPERIENCE API <span>Entrega de laboratório · 15/10/2026</span></header>';
+const header = '<header>BALSAS EXPERIENCE API <span>Entrega de laboratório · 17/10/2026</span></header>';
 const pages = [];
 const members = ['Carinne Borges da Silva', 'Júlio César Lima dos Reis', 'João Pedro Strasser Santos', 'Rogério Mota de Melo'];
-function page(body) { pages.push(`<section class="page">${header}${body}<footer>Rascunho técnico · Identificação e publicação pendentes <span>${pages.length + 1}</span></footer></section>`); }
+const teamSuggestions = JSON.parse(await readFile('docs/equipe-sugestoes.json', 'utf8'));
+function page(body) { pages.push(`<section class="page">${header}${body}<footer>Balsas Experience API · Relatório de laboratório <span>${pages.length + 1}</span></footer></section>`); }
 
 page(`<div class="kicker">API REST · NODE.JS + POSTGRESQL</div><h1>Balsas Experience API</h1>
-${pending('RASCUNHO: este documento ainda não está pronto para submissão. Faltam dados acadêmicos e individuais, a URL da API publicada e sua captura de funcionamento.')}
+${pending('Revisão da entrega: API publicada e verificada em 17/10/2026. Faltam o nome da equipe, matrículas e confirmação dos relatos individuais.')}
 <h2>1. Identificação</h2>${table(['Campo', 'Informação'], [
-  ['Instituição', 'A informar pela equipe'], ['Curso', 'A informar pela equipe'],
-  ['Disciplina', 'A informar pela equipe'], ['Professor', 'A informar pela equipe'],
-  ['Projeto', 'Balsas Experience API'], ['Data do documento', '15/10/2026'],
+  ['Instituição', 'UNIBALSAS - Centro Universitário de Balsas'], ['Curso', 'Análise e Desenvolvimento de Sistemas'],
+  ['Disciplina', 'Programação para Web'], ['Professor', 'Marcos Deivd de Spusa Ramos (grafia informada)'],
+  ['Projeto', 'Balsas Experience API'], ['Data do documento', '17/10/2026'],
 ])}
 <h2>2. A equipe</h2><p>Nome da equipe: <strong>a informar</strong>. Todos os integrantes precisam constar abaixo.</p>
-${table(['Nome completo', 'Matrícula', 'O que fez no projeto'], members.map(name => [name, 'A informar', 'Contribuição real a confirmar']))}
+<p>Contribuições sugeridas para revisão dos integrantes; ainda não confirmadas.</p>
+${table(['Nome completo', 'Matrícula', 'Contribuição proposta'], teamSuggestions.map(m => [m.nome, 'A informar', m.contribuicao]))}
 <h2>3. Descrição do projeto</h2>
 <p>A Balsas Experience API disponibiliza um catálogo de atrações turísticas de Balsas-MA. Permite consultar atrações, filtrar por categoria, tag e texto, acessar detalhes e registrar avaliações de visitantes. Também oferece operações para criar, atualizar e remover atrações.</p>
 <p>Serve como fonte de dados para sites e aplicativos voltados a moradores e turistas. O projeto reúne informações dispersas em uma estrutura consultável e persistente: categorias organizam o catálogo, tags permitem cruzar interesses e avaliações registram a experiência dos visitantes.</p>
-<h2>4. Tecnologias utilizadas</h2>
+`);
+page(`<h2>4. Tecnologias utilizadas</h2><p>Versões de referência do ambiente local e dependências. A versão do banco publicada não foi consultada.</p>
 ${table(['Tecnologia', 'Versão verificada', 'Finalidade'], [
   ['Node.js', '24.13.1', 'Ambiente de execução JavaScript'], ['Express', '5.2.1', 'Rotas e respostas HTTP'],
   ['Prisma CLI / Client', '7.10.0', 'Modelagem, migrações e consultas'], ['PostgreSQL', '18.6', 'Banco de dados relacional'],
@@ -93,22 +96,24 @@ for (let i = 0; i < data.records.length; i++) {
 }
 
 page(`<h2>8. Evidências de funcionamento <small>· API publicada</small></h2>
-${pending('PENDENTE: informar a URL pública, verificar uma resposta real de /atracoes e inserir a captura. As evidências anteriores comprovam somente a execução local.')}
+<p>Verificação real em 17/10/2026: GET /health, /categorias e /atracoes retornaram HTTP 200; GET /atracoes/2147483647 retornou 404. As consultas de categorias e atrações confirmam o acesso ao banco publicado.</p><img class="evidence" style="max-height:165mm" src="${pathToFileURL(resolve('docs/evidencias/5-publicada.png')).href}"><p class="caption">Captura da visualização da resposta real do cliente HTTP Node.js/fetch. Registros integrais: docs/evidencias/registros-publicos.json.</p>
 <h2>9. Links</h2>
-${table(['Destino', 'Endereço'], [['Repositório público no GitHub', '<a href="https://github.com/ark-pkr/balsas-experience-api">https://github.com/ark-pkr/balsas-experience-api</a>'], ['API publicada', 'A informar pela equipe']])}
-<h2>10. Dificuldades e aprendizados</h2>
-<p>Esta seção depende do relato dos integrantes. Os tópicos abaixo ajudam a registrar a experiência, mas não são apresentados como acontecimentos vividos pela equipe.</p>
-${table(['Integrante', 'Dificuldade real', 'Como resolveu', 'O que aprendeu'], members.map(name => [name, 'A confirmar', 'A confirmar', 'A confirmar']))}
+${table(['Destino', 'Endereço'], [['Repositório público no GitHub', '<a href="https://github.com/ark-pkr/balsas-experience-api">https://github.com/ark-pkr/balsas-experience-api</a>'], ['API publicada', '<a href="https://balsas-experience-api-lgdm.onrender.com/categorias">https://balsas-experience-api-lgdm.onrender.com/categorias</a>']])}
+`);
+
+page(`<h2>10. Dificuldades e aprendizados</h2>
+<p>Sugestões para revisão da equipe. Cada integrante deve ajustar e confirmar seu relato conforme sua experiência real.</p>
+${table(['Integrante', 'Dificuldade sugerida', 'Solução sugerida', 'Aprendizado sugerido'], teamSuggestions.map(m => [m.nome, m.dificuldade, m.solucao, m.aprendizado]))}
 <p>Para cada integrante: descreva um problema concreto, a tentativa que resolveu o problema e o conhecimento adquirido. Exemplos de assuntos que podem ser abordados, se realmente ocorreram: conexão com PostgreSQL, variáveis de ambiente, adaptação ao Prisma 7, relações entre tabelas, migrações, validação de JSON e publicação.</p>
 <h3>Conceitos técnicos demonstrados pelo projeto</h3>
 <p><strong>Prisma 7:</strong> o cliente usa o adaptador PrismaPg para acessar PostgreSQL. <strong>Modelagem:</strong> tags reutilizáveis são associadas às atrações em uma relação N:N. <strong>Integridade:</strong> a exclusão em cascata evita avaliações sem atração. <strong>HTTP:</strong> criação retorna 201 e Location; remoção retorna 204 sem corpo; registro ausente retorna 404.</p>
 <p>Esses conceitos são verificáveis no código; a experiência pessoal de cada integrante será inserida após a confirmação em docs/RELATOS-EQUIPE.md.</p>
 <h3>Verificação técnica realizada nesta revisão</h3>
-<p>Os 15 cenários automatizados passaram. Foram coletados registros reais de listagem 200, busca 404, criação 201 e remoção 204, usando o banco PostgreSQL 18.6 configurado. O seed não foi executado nesta revisão.</p>
+<p>A revisão local anterior registrou 15 cenários automatizados aprovados. Foram coletados registros reais de listagem 200, busca 404, criação 201 e remoção 204, usando o banco PostgreSQL 18.6 configurado. O seed não foi executado nesta revisão.</p>
 <h3>Antes de enviar pelo portal</h3>
-<ol><li>Preencher instituição, curso, disciplina, professor e todos os integrantes com matrícula e contribuição.</li><li>Publicar a API e atualizar sua URL no README e neste documento. O repositório público já foi criado.</li><li>Inserir a captura da API publicada e os aprendizados reais de cada integrante.</li><li>Gerar novamente o PDF e nomeá-lo balsas-experience-api-equipe-&lt;nome-da-equipe&gt;.pdf.</li><li>Combinar quem será o único integrante responsável pela submissão e enviar somente o PDF.</li></ol>`);
+<ol><li>Confirmar a identificação acadêmica, a grafia do professor e as contribuições individuais.</li><li>Conferir os links públicos da API e do repositório.</li><li>Confirmar os aprendizados reais de cada integrante e as matrículas.</li><li>Gerar novamente o PDF e nomeá-lo balsas-experience-api-equipe-&lt;nome-da-equipe&gt;.pdf.</li><li>Combinar quem será o único integrante responsável pela submissão e enviar somente o PDF.</li></ol>`);
 
-const html = `<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Balsas Experience API - Rascunho de entrega</title><style>
+const html = `<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Balsas Experience API - Relatório de entrega</title><style>
 @page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;color:#1c2c40;font:10.3pt/1.45 Arial,sans-serif;background:#e9eef4}
 .page{position:relative;width:210mm;height:297mm;padding:15mm 16mm 17mm;background:white;break-after:page;overflow:hidden}.page:last-child{break-after:auto}
 header{font-size:8pt;letter-spacing:.8px;color:#42637f;border-bottom:1px solid #bccbd9;padding-bottom:8px;margin-bottom:16px}header span{float:right;letter-spacing:0}
@@ -121,7 +126,7 @@ pre{font:9pt/1.42 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere
 </style>${pages.join('')}</html>`;
 const htmlPath = resolve(out, 'relatorio-entrega.html');
 await writeFile(htmlPath, html);
-const pdfPath = resolve(out, 'balsas-experience-api-equipe-a-definir-rascunho.pdf');
+const pdfPath = resolve(out, 'balsas-experience-api-equipe-a-definir.pdf');
 const chrome = process.env.CHROME_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const browser = spawn(chrome, ['--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check',
   `--user-data-dir=${resolve('tmp/browser/pdf')}`, '--no-pdf-header-footer',

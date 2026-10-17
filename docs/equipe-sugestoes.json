@@ -1,0 +1,6 @@
+[
+  {"nome":"Carinne Borges da Silva","contribuicao":"Organização da documentação e descrição dos endpoints.","dificuldade":"Entender os códigos de status HTTP.","solucao":"Revisou as respostas durante os testes para documentá-las.","aprendizado":"Documentar requisições, respostas e comportamentos da API."},
+  {"nome":"Júlio César Lima dos Reis","contribuicao":"Desenvolvimento das rotas e validação dos dados recebidos.","dificuldade":"Validar os campos enviados em JSON.","solucao":"Testou entradas válidas e inválidas e ajustou as verificações.","aprendizado":"Criar rotas no Express e retornar mensagens de erro adequadas."},
+  {"nome":"João Pedro Strasser Santos","contribuicao":"Modelagem do banco e integração com Prisma.","dificuldade":"Compreender as relações entre atrações, categorias, tags e avaliações.","solucao":"Revisou o schema e conferiu os vínculos no banco.","aprendizado":"Modelar relações e utilizar migrações e consultas com Prisma."},
+  {"nome":"Rogério Mota de Melo","contribuicao":"Configuração do ambiente, testes e publicação no Render.","dificuldade":"Configurar a conexão com PostgreSQL e as variáveis de ambiente na hospedagem.","solucao":"Conferiu as configurações e testou os endpoints publicados.","aprendizado":"Publicar uma API e verificar a comunicação entre servidor e banco."}
+]
